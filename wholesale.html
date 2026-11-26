@@ -67,6 +67,11 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ju
 <p class="lead">قائمة أسعار محاصيل محمصة أسانتي لعملاء الجملة وإعادة البيع. الأسعار بالريال السعودي وغير شاملة ضريبة القيمة المضافة، وقابلة للتغيير.</p>
 </section>
 <section id="prices" class="wrap" style="padding-top:28px">
+<div class="ctrl" style="margin:0 0 16px">
+<label for="cname" style="font-size:17px;font-weight:600">الاسم أو اسم المحل</label>
+<input id="cname" type="text" autocomplete="organization" placeholder="اكتب اسمك هنا" style="width:auto;flex:1 1 240px;max-width:420px;text-align:start;font-size:17px;font-weight:500">
+<span class="muted" style="font-size:14px">يظهر اسمك في رسالة الطلب عبر واتساب.</span>
+</div>
 <div class="tabs" role="tablist" aria-label="نوع القائمة">
 <button class="tab" role="tab" aria-selected="true" data-mode="kg">أسعار الكيلو</button>
 <button class="tab" role="tab" aria-selected="false" data-mode="bag">أكياس 225 جم (إعادة البيع)</button>
@@ -272,7 +277,10 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ju
 </div></footer>
 <script>
 (function(){
-var WA='https://wa.me/966537809377?text=',mode='kg',qty=10,bagT=1;
+var WA='https://wa.me/966537809377?text=',mode='kg',qty=10,bagT=1,cname='';
+var nameEl=document.getElementById('cname');
+try{cname=localStorage.getItem('asanteName')||'';nameEl.value=cname}catch(e){}
+nameEl.addEventListener('input',function(){cname=nameEl.value.trim();try{localStorage.setItem('asanteName',cname)}catch(e){};render()});
 function fmt(n){return Number(n).toLocaleString('en-US',{maximumFractionDigits:2})}
 function tierOf(q){return q>=100?3:q>=50?2:q>=30?1:q>=10?0:-1}
 function render(){
@@ -289,7 +297,7 @@ function render(){
     card.querySelectorAll('.k3 .tier').forEach(function(el,i){el.classList.toggle('on',i===bagT)});
     card.querySelector('.total.m-kg').textContent=t>=0?('الإجمالي لـ '+qty+' كيلو: '+fmt(qty*kg[t])+' ر.س'):'';
     card.querySelector('.bagnote').textContent=bagT===0?'سعر إعادة البيع الرسمي للكيس':'سعر الكيس 225 جم بعد الخصم';
-    var msg=mode==='kg'?('مرحباً، أبغى أطلب جملة: '+name+'، الكمية '+qty+' كيلو'):('مرحباً، أبغى أطلب أكياس 225 جم: '+name);
+    var who=cname?('مرحباً، معك '+cname+'. '):'مرحباً، ';var msg=who+(mode==='kg'?('أبغى أطلب جملة: '+name+'، الكمية '+qty+' كيلو'):('أبغى أطلب أكياس 225 جم: '+name));
     card.querySelector('.wa').href=WA+encodeURIComponent(msg);
   });
 }
