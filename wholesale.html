@@ -64,7 +64,7 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ju
 <section class="wrap" style="padding-top:56px;display:flex;flex-direction:column;gap:14px">
 <span class="bebas" style="font-size:20px;letter-spacing:4px;color:#FF6A33" dir="ltr">WHOLESALE PRICE LIST</span>
 <h1>أسعار الجملة</h1>
-<p class="lead">قائمة أسعار محاصيل محمصة أسانتي لعملاء الجملة وإعادة البيع. الأسعار بالريال السعودي وغير شاملة ضريبة القيمة المضافة، وقابلة للتغيير.</p>
+<p class="lead">قائمة أسعار محاصيل محمصة أسانتي لعملاء الجملة وإعادة البيع. الأسعار بالريال السعودي وغير شاملة ضريبة القيمة المضافة (15%)، وقابلة للتغيير. الإجمالي المحسوب لكل محصول شامل الضريبة.</p>
 </section>
 <section id="prices" class="wrap" style="padding-top:28px">
 <div class="ctrl" style="margin:0 0 16px">
@@ -295,9 +295,10 @@ function render(){
     var kg=JSON.parse(card.dataset.kg),name=card.dataset.name;
     card.querySelectorAll('.k4 .tier').forEach(function(el,i){el.classList.toggle('on',i===t)});
     card.querySelectorAll('.k3 .tier').forEach(function(el,i){el.classList.toggle('on',i===bagT)});
-    card.querySelector('.total.m-kg').textContent=t>=0?('الإجمالي لـ '+qty+' كيلو: '+fmt(qty*kg[t])+' ر.س'):'';
+    var sub=t>=0?qty*kg[t]:0,vat=Math.round(sub*0.15*100)/100,tot=Math.round((sub+vat)*100)/100;
+    card.querySelector('.total.m-kg').innerHTML=t>=0?('<span style="display:block;font-size:13px;font-weight:500;color:#B9B2A6">'+qty+' كيلو × '+fmt(kg[t])+' = '+fmt(sub)+' ر.س + ضريبة 15% '+fmt(vat)+' ر.س</span>الإجمالي شامل الضريبة: '+fmt(tot)+' ر.س'):'';
     card.querySelector('.bagnote').textContent=bagT===0?'سعر إعادة البيع الرسمي للكيس':'سعر الكيس 225 جم بعد الخصم';
-    var who=cname?('مرحباً، معك '+cname+'. '):'مرحباً، ';var msg=who+(mode==='kg'?('أبغى أطلب جملة: '+name+'، الكمية '+qty+' كيلو'):('أبغى أطلب أكياس 225 جم: '+name));
+    var who=cname?('مرحباً، معك '+cname+'. '):'مرحباً، ';var msg=who+(mode==='kg'?('أبغى أطلب جملة: '+name+'، الكمية '+qty+' كيلو'+(t>=0?('، الإجمالي شامل الضريبة '+fmt(tot)+' ر.س'):'')):('أبغى أطلب أكياس 225 جم: '+name));
     card.querySelector('.wa').href=WA+encodeURIComponent(msg);
   });
 }
