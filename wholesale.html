@@ -42,7 +42,7 @@ h1{margin:0;font-size:clamp(38px,6vw,56px);line-height:1.15}h2{margin:0;font-siz
 .btns{display:flex;flex-wrap:wrap;gap:8px}
 .btn{flex:1 1 130px;min-height:44px;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;font-size:15px;font-weight:700;padding:0 16px}
 .btn.light{background:#F4EEE4;color:#141826}.btn.light:hover{color:#141826;background:#fff}
-.btn.ghost{border:1px solid rgba(244,238,228,.3);font-weight:500}
+.btn.ghost{border:1px solid rgba(244,238,228,.3);font-weight:500;background:transparent;color:#F4EEE4}
 .btn.accent{background:#FF6A33;color:#141826;flex:0 0 auto}
 .box{background:#1C2133;border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:12px}
 .scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:15px}
@@ -57,6 +57,18 @@ dialog{border:0;padding:0;background:transparent;max-width:min(560px,92vw);width
 .dlg{background:#1C2133;color:#F4EEE4;border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:14px;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif}
 .dlghead{display:flex;justify-content:space-between;align-items:center;gap:12px}.dlghead h2{font-size:26px}
 .x{width:44px;height:44px;border-radius:12px;border:1px solid rgba(244,238,228,.3);background:transparent;color:#F4EEE4;font-size:24px;line-height:1}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.addrow{display:flex;gap:8px}.addrow input{width:96px;min-height:44px;padding:0 10px;border-radius:12px;border:1px solid rgba(244,238,228,.3);background:#141826;color:#F4EEE4;font-size:17px;text-align:center}
+.add{flex:1;min-height:44px;border:0;border-radius:12px;background:#F4EEE4;color:#141826;font-size:15px;font-weight:700}.add:hover{background:#fff}
+.incart{font-size:14px;color:#FF9B73;font-weight:600;min-height:20px}
+span.chip{display:inline-flex;align-items:center}
+.obar{position:fixed;inset-inline:0;bottom:0;background:#0E111B;border-top:1px solid rgba(255,106,51,.5);z-index:10}
+.obarin{padding-top:12px;padding-bottom:12px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.obtns{display:flex;flex-wrap:wrap;gap:8px}.obtns .btn{flex:0 0 auto}
+.oline{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(244,238,228,.1);font-size:15px}
+.oline button{min-height:36px;padding:0 12px;border-radius:10px;border:1px solid rgba(244,238,228,.3);background:transparent;color:#F4EEE4;font-size:13px}
+.trow{display:flex;justify-content:space-between;padding:4px 0;font-size:15px}.trow.big{font-size:18px;font-weight:700}
+body.hasorder footer{padding-bottom:90px}
 footer{margin-top:64px;border-top:1px solid rgba(244,238,228,.12)}
 footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;color:#B9B2A6}
 </style>
@@ -70,7 +82,7 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ju
 <section class="wrap" style="padding-top:56px;display:flex;flex-direction:column;gap:14px">
 <span class="bebas" style="font-size:20px;letter-spacing:4px;color:#FF6A33" dir="ltr">WHOLESALE PRICE LIST</span>
 <h1>أسعار الجملة</h1>
-<p class="lead">قائمة أسعار محاصيل محمصة أسانتي لعملاء الجملة وإعادة البيع. الأسعار بالريال السعودي وغير شاملة ضريبة القيمة المضافة (15%)، وقابلة للتغيير. الإجمالي المحسوب لكل محصول شامل الضريبة.</p>
+<p class="lead">قائمة أسعار محاصيل محمصة أسانتي لعملاء الجملة وإعادة البيع. الأسعار بالريال السعودي وغير شاملة ضريبة القيمة المضافة (15%)، وقابلة للتغيير. أضف أكثر من محصول لطلبك، والشريحة تُحسب على مجموع الكيلو في الطلب كامل. الإجمالي في السلة شامل الضريبة.</p>
 </section>
 <section id="prices" class="wrap" style="padding-top:28px">
 <div class="ctrl" style="margin:0 0 16px">
@@ -83,12 +95,11 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ju
 <button class="tab" role="tab" aria-selected="false" data-mode="bag">أكياس 225 جم (إعادة البيع)</button>
 </div>
 <div class="ctrl m-kg">
-<label for="qty" style="font-size:17px;font-weight:600">كمية الطلب (كيلو)</label>
-<input id="qty" type="number" min="10" step="1" value="10" dir="ltr" inputmode="numeric">
-<span class="muted" style="font-size:15px">أو اختر شريحة:</span>
-<div style="display:flex;flex-wrap:wrap;gap:8px" id="kgchips"><button class="chip" data-q="10">10 كيلو+</button><button class="chip" data-q="30">30 كيلو+</button><button class="chip" data-q="50">50 كيلو+</button><button class="chip" data-q="100">100 كيلو+</button></div>
+<span style="font-size:17px;font-weight:600">الشريحة حسب مجموع طلبك:</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px" id="kgchips"><span class="chip" data-q="10">10 كيلو+</span><span class="chip" data-q="30">30 كيلو+</span><span class="chip" data-q="50">50 كيلو+</span><span class="chip" data-q="100">100 كيلو+</span></div>
+<span class="muted" style="font-size:15px" id="kgsum">أضف المحاصيل والكميات من البطاقات، والسعر يتحدد تلقائياً.</span>
 </div>
-<p class="warn m-kg" id="warn" hidden>الحد الأدنى لطلب الجملة بالكيلو: 10 كيلو.</p>
+
 <div class="ctrl m-bag">
 <span class="muted" style="font-size:15px">اختر الشريحة:</span>
 <div style="display:flex;flex-wrap:wrap;gap:8px" id="bagchips"><button class="chip" data-t="0">سعر إعادة البيع الرسمي</button><button class="chip on" data-t="1">طلب 50 كيلو</button><button class="chip" data-t="2">طلب 100 كيلو</button></div>
@@ -96,154 +107,186 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ju
 </section>
 <section class="wrap" style="padding-top:48px">
 <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px"><h2>المحاصيل</h2><span class="muted unit"></span></div>
-<div class="grid"><article class="card" data-name="البرازيل – مارسيلو" data-kg='[91, 83, 78, 70]'>
+<div class="grid"><article class="card" data-key="BrazilMarcelo" data-name="البرازيل – مارسيلو" data-kg='[91, 83, 78, 70]' data-bag='[32, 22.4, 19.2]'>
 <img src="img/ba43046b.jpg" alt="كيس مارسيلو" loading="lazy">
 <div class="body">
 <div><span class="muted sm">البرازيل</span><h3>مارسيلو</h3><p class="notes">فواكه حمضية، شوكولاتة، كراميل، مكسرات</p></div>
 <div class="pills"><span class="pill">المعالجة: مجفف</span><span class="pill">إسبريسو وفلتر</span></div>
 <div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 كيلو+</span><b dir="ltr">91</b></div><div class="tier" data-i="1"><span>30 كيلو+</span><b dir="ltr">83</b></div><div class="tier" data-i="2"><span>50 كيلو+</span><b dir="ltr">78</b></div><div class="tier" data-i="3"><span>100 كيلو+</span><b dir="ltr">70</b></div></div>
 <div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>سعر البيع</span><b dir="ltr">32</b></div><div class="tier" data-i="1"><span>50 كيلو −30%</span><b dir="ltr">22.4</b></div><div class="tier" data-i="2"><span>100 كيلو −40%</span><b dir="ltr">19.2</b></div></div>
-<div class="total m-kg"></div><div class="total m-bag bagnote"></div>
-<div class="btns"><a class="btn light wa" target="_blank" rel="noopener" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>اطلب عبر واتساب</a><a class="btn ghost" href="brazil-marcelo.html">ملف التذوق</a></div>
-</div></article><article class="card" data-name="إثيوبيا – مريم" data-kg='[116, 109, 98, 86]'>
+<div class="addrow m-kg"><label class="sr" for="q-kg-BrazilMarcelo">الكمية بالكيلو</label><input id="q-kg-BrazilMarcelo" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="كيلو" dir="ltr"><button class="add" data-u="kg">أضف للطلب</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-BrazilMarcelo">عدد الأكياس</label><input id="q-bag-BrazilMarcelo" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="أكياس" dir="ltr"><button class="add" data-u="bag">أضف للطلب</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="brazil-marcelo.html">ملف التذوق</a></div>
+</div></article><article class="card" data-key="EthiopiaMariam" data-name="إثيوبيا – مريم" data-kg='[116, 109, 98, 86]' data-bag='[39, 27.3, 23.4]'>
 <img src="img/3b0a7efe.jpg" alt="كيس مريم" loading="lazy">
 <div class="body">
 <div><span class="muted sm">إثيوبيا</span><h3>مريم</h3><p class="notes">شوكولاتة بالحليب، فواكه استوائية، جريب فروت، خوخ</p></div>
 <div class="pills"><span class="pill">المعالجة: مجفف</span><span class="pill">إسبريسو وفلتر</span></div>
 <div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 كيلو+</span><b dir="ltr">116</b></div><div class="tier" data-i="1"><span>30 كيلو+</span><b dir="ltr">109</b></div><div class="tier" data-i="2"><span>50 كيلو+</span><b dir="ltr">98</b></div><div class="tier" data-i="3"><span>100 كيلو+</span><b dir="ltr">86</b></div></div>
 <div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>سعر البيع</span><b dir="ltr">39</b></div><div class="tier" data-i="1"><span>50 كيلو −30%</span><b dir="ltr">27.3</b></div><div class="tier" data-i="2"><span>100 كيلو −40%</span><b dir="ltr">23.4</b></div></div>
-<div class="total m-kg"></div><div class="total m-bag bagnote"></div>
-<div class="btns"><a class="btn light wa" target="_blank" rel="noopener" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>اطلب عبر واتساب</a><a class="btn ghost" href="ethiopia-mariam.html">ملف التذوق</a></div>
-</div></article><article class="card" data-name="كولومبيا – جافي" data-kg='[121, 115, 105, 96]'>
+<div class="addrow m-kg"><label class="sr" for="q-kg-EthiopiaMariam">الكمية بالكيلو</label><input id="q-kg-EthiopiaMariam" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="كيلو" dir="ltr"><button class="add" data-u="kg">أضف للطلب</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-EthiopiaMariam">عدد الأكياس</label><input id="q-bag-EthiopiaMariam" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="أكياس" dir="ltr"><button class="add" data-u="bag">أضف للطلب</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="ethiopia-mariam.html">ملف التذوق</a></div>
+</div></article><article class="card" data-key="ColombiaGavi" data-name="كولومبيا – جافي" data-kg='[121, 115, 105, 96]' data-bag='[46, 32.2, 27.6]'>
 <img src="img/4015072a.jpg" alt="كيس جافي" loading="lazy">
 <div class="body">
 <div><span class="muted sm">كولومبيا</span><h3>جافي</h3><p class="notes">فاكهية، حلاوة كراميل، قشر برتقال، عسل</p></div>
 <div class="pills"><span class="pill">المعالجة: مجفف</span><span class="pill">فلتر</span></div>
 <div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 كيلو+</span><b dir="ltr">121</b></div><div class="tier" data-i="1"><span>30 كيلو+</span><b dir="ltr">115</b></div><div class="tier" data-i="2"><span>50 كيلو+</span><b dir="ltr">105</b></div><div class="tier" data-i="3"><span>100 كيلو+</span><b dir="ltr">96</b></div></div>
 <div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>سعر البيع</span><b dir="ltr">46</b></div><div class="tier" data-i="1"><span>50 كيلو −30%</span><b dir="ltr">32.2</b></div><div class="tier" data-i="2"><span>100 كيلو −40%</span><b dir="ltr">27.6</b></div></div>
-<div class="total m-kg"></div><div class="total m-bag bagnote"></div>
-<div class="btns"><a class="btn light wa" target="_blank" rel="noopener" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>اطلب عبر واتساب</a><a class="btn ghost" href="colombia-gavi.html">ملف التذوق</a></div>
-</div></article><article class="card" data-name="إثيوبيا – شلشلي" data-kg='[119, 111, 97, 87]'>
+<div class="addrow m-kg"><label class="sr" for="q-kg-ColombiaGavi">الكمية بالكيلو</label><input id="q-kg-ColombiaGavi" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="كيلو" dir="ltr"><button class="add" data-u="kg">أضف للطلب</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-ColombiaGavi">عدد الأكياس</label><input id="q-bag-ColombiaGavi" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="أكياس" dir="ltr"><button class="add" data-u="bag">أضف للطلب</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="colombia-gavi.html">ملف التذوق</a></div>
+</div></article><article class="card" data-key="EthiopiaChelchele" data-name="إثيوبيا – شلشلي" data-kg='[119, 111, 97, 87]' data-bag='[39, 27.3, 23.5]'>
 <img src="img/a2473d39.jpg" alt="كيس شلشلي" loading="lazy">
 <div class="body">
 <div><span class="muted sm">إثيوبيا</span><h3>شلشلي</h3><p class="notes">خوخ، أناناس، ليتشي، حلاوة</p></div>
 <div class="pills"><span class="pill">المعالجة: مجفف</span><span class="pill">إسبريسو وفلتر</span></div>
 <div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 كيلو+</span><b dir="ltr">119</b></div><div class="tier" data-i="1"><span>30 كيلو+</span><b dir="ltr">111</b></div><div class="tier" data-i="2"><span>50 كيلو+</span><b dir="ltr">97</b></div><div class="tier" data-i="3"><span>100 كيلو+</span><b dir="ltr">87</b></div></div>
 <div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>سعر البيع</span><b dir="ltr">39</b></div><div class="tier" data-i="1"><span>50 كيلو −30%</span><b dir="ltr">27.3</b></div><div class="tier" data-i="2"><span>100 كيلو −40%</span><b dir="ltr">23.5</b></div></div>
-<div class="total m-kg"></div><div class="total m-bag bagnote"></div>
-<div class="btns"><a class="btn light wa" target="_blank" rel="noopener" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>اطلب عبر واتساب</a><a class="btn ghost" href="ethiopia-chelchele.html">ملف التذوق</a></div>
-</div></article><article class="card" data-name="بلند – شامبا" data-kg='[106, 98, 89, 82]'>
+<div class="addrow m-kg"><label class="sr" for="q-kg-EthiopiaChelchele">الكمية بالكيلو</label><input id="q-kg-EthiopiaChelchele" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="كيلو" dir="ltr"><button class="add" data-u="kg">أضف للطلب</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-EthiopiaChelchele">عدد الأكياس</label><input id="q-bag-EthiopiaChelchele" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="أكياس" dir="ltr"><button class="add" data-u="bag">أضف للطلب</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="ethiopia-chelchele.html">ملف التذوق</a></div>
+</div></article><article class="card" data-key="ShambaBlend" data-name="بلند – شامبا" data-kg='[106, 98, 89, 82]' data-bag='[34, 23.8, 20.4]'>
 <img src="img/31c9d267.jpg" alt="كيس شامبا" loading="lazy">
 <div class="body">
 <div><span class="muted sm">بلند</span><h3>شامبا</h3><p class="notes">لوز، كراميل، قصب السكر</p></div>
 <div class="pills"><span class="pill">المعالجة: مزيج</span><span class="pill">إسبريسو وفلتر</span></div>
 <div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 كيلو+</span><b dir="ltr">106</b></div><div class="tier" data-i="1"><span>30 كيلو+</span><b dir="ltr">98</b></div><div class="tier" data-i="2"><span>50 كيلو+</span><b dir="ltr">89</b></div><div class="tier" data-i="3"><span>100 كيلو+</span><b dir="ltr">82</b></div></div>
 <div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>سعر البيع</span><b dir="ltr">34</b></div><div class="tier" data-i="1"><span>50 كيلو −30%</span><b dir="ltr">23.8</b></div><div class="tier" data-i="2"><span>100 كيلو −40%</span><b dir="ltr">20.4</b></div></div>
-<div class="total m-kg"></div><div class="total m-bag bagnote"></div>
-<div class="btns"><a class="btn light wa" target="_blank" rel="noopener" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>اطلب عبر واتساب</a><a class="btn ghost" href="shamba-blend.html">ملف التذوق</a></div>
-</div></article><article class="card" data-name="أوغندا – نانسي" data-kg='[109, 102, 92, 84]'>
+<div class="addrow m-kg"><label class="sr" for="q-kg-ShambaBlend">الكمية بالكيلو</label><input id="q-kg-ShambaBlend" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="كيلو" dir="ltr"><button class="add" data-u="kg">أضف للطلب</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-ShambaBlend">عدد الأكياس</label><input id="q-bag-ShambaBlend" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="أكياس" dir="ltr"><button class="add" data-u="bag">أضف للطلب</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="shamba-blend.html">ملف التذوق</a></div>
+</div></article><article class="card" data-key="UgandaNancy" data-name="أوغندا – نانسي" data-kg='[109, 102, 92, 84]' data-bag='[39, 27.3, 23.5]'>
 <img src="img/50f9e9de.jpg" alt="كيس نانسي" loading="lazy">
 <div class="body">
 <div><span class="muted sm">أوغندا</span><h3>نانسي</h3><p class="notes">شاي أسود، مشمش، مانجو، باشن فروت، شوكولاتة</p></div>
 <div class="pills"><span class="pill">المعالجة: مجفف</span><span class="pill">فلتر</span></div>
 <div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 كيلو+</span><b dir="ltr">109</b></div><div class="tier" data-i="1"><span>30 كيلو+</span><b dir="ltr">102</b></div><div class="tier" data-i="2"><span>50 كيلو+</span><b dir="ltr">92</b></div><div class="tier" data-i="3"><span>100 كيلو+</span><b dir="ltr">84</b></div></div>
 <div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>سعر البيع</span><b dir="ltr">39</b></div><div class="tier" data-i="1"><span>50 كيلو −30%</span><b dir="ltr">27.3</b></div><div class="tier" data-i="2"><span>100 كيلو −40%</span><b dir="ltr">23.5</b></div></div>
-<div class="total m-kg"></div><div class="total m-bag bagnote"></div>
-<div class="btns"><a class="btn light wa" target="_blank" rel="noopener" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>اطلب عبر واتساب</a><a class="btn ghost" href="uganda-nancy.html">ملف التذوق</a></div>
-</div></article><article class="card" data-name="الهند – فريدة خان" data-kg='[119, 109, 99, 92]'>
+<div class="addrow m-kg"><label class="sr" for="q-kg-UgandaNancy">الكمية بالكيلو</label><input id="q-kg-UgandaNancy" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="كيلو" dir="ltr"><button class="add" data-u="kg">أضف للطلب</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-UgandaNancy">عدد الأكياس</label><input id="q-bag-UgandaNancy" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="أكياس" dir="ltr"><button class="add" data-u="bag">أضف للطلب</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="uganda-nancy.html">ملف التذوق</a></div>
+</div></article><article class="card" data-key="IndiaFaridaKhan" data-name="الهند – فريدة خان" data-kg='[119, 109, 99, 92]' data-bag='[39, 27.3, 23.5]'>
 <img src="img/25d35fc7.jpg" alt="كيس فريدة خان" loading="lazy">
 <div class="body">
 <div><span class="muted sm">الهند</span><h3>فريدة خان</h3><p class="notes">كراميل، كرز، عسل، قوام مثالي</p></div>
 <div class="pills"><span class="pill">المعالجة: مغسول</span><span class="pill">إسبريسو وفلتر</span></div>
 <div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 كيلو+</span><b dir="ltr">119</b></div><div class="tier" data-i="1"><span>30 كيلو+</span><b dir="ltr">109</b></div><div class="tier" data-i="2"><span>50 كيلو+</span><b dir="ltr">99</b></div><div class="tier" data-i="3"><span>100 كيلو+</span><b dir="ltr">92</b></div></div>
 <div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>سعر البيع</span><b dir="ltr">39</b></div><div class="tier" data-i="1"><span>50 كيلو −30%</span><b dir="ltr">27.3</b></div><div class="tier" data-i="2"><span>100 كيلو −40%</span><b dir="ltr">23.5</b></div></div>
-<div class="total m-kg"></div><div class="total m-bag bagnote"></div>
-<div class="btns"><a class="btn light wa" target="_blank" rel="noopener" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>اطلب عبر واتساب</a><a class="btn ghost" href="india-farida-khan.html">ملف التذوق</a></div>
-</div></article><article class="card" data-name="كوستاريكا – كارلوس" data-kg='[121, 114, 104, 95]'>
+<div class="addrow m-kg"><label class="sr" for="q-kg-IndiaFaridaKhan">الكمية بالكيلو</label><input id="q-kg-IndiaFaridaKhan" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="كيلو" dir="ltr"><button class="add" data-u="kg">أضف للطلب</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-IndiaFaridaKhan">عدد الأكياس</label><input id="q-bag-IndiaFaridaKhan" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="أكياس" dir="ltr"><button class="add" data-u="bag">أضف للطلب</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="india-farida-khan.html">ملف التذوق</a></div>
+</div></article><article class="card" data-key="CostaRicaCarlos" data-name="كوستاريكا – كارلوس" data-kg='[121, 114, 104, 95]' data-bag='[42, 29.4, 25.2]'>
 <img src="img/0a74b700.jpg" alt="كيس كارلوس" loading="lazy">
 <div class="body">
 <div><span class="muted sm">كوستاريكا</span><h3>كارلوس</h3><p class="notes">شوكولاتة داكنة، حلاوة، فواكه مجففة</p></div>
 <div class="pills"><span class="pill">المعالجة: عسلي</span><span class="pill">فلتر</span></div>
 <div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 كيلو+</span><b dir="ltr">121</b></div><div class="tier" data-i="1"><span>30 كيلو+</span><b dir="ltr">114</b></div><div class="tier" data-i="2"><span>50 كيلو+</span><b dir="ltr">104</b></div><div class="tier" data-i="3"><span>100 كيلو+</span><b dir="ltr">95</b></div></div>
 <div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>سعر البيع</span><b dir="ltr">42</b></div><div class="tier" data-i="1"><span>50 كيلو −30%</span><b dir="ltr">29.4</b></div><div class="tier" data-i="2"><span>100 كيلو −40%</span><b dir="ltr">25.2</b></div></div>
-<div class="total m-kg"></div><div class="total m-bag bagnote"></div>
-<div class="btns"><a class="btn light wa" target="_blank" rel="noopener" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>اطلب عبر واتساب</a><a class="btn ghost" href="costa-rica-carlos.html">ملف التذوق</a></div>
-</div></article><article class="card" data-name="السلفادور – سانتا روز" data-kg='[121, 115, 105, 96]'>
+<div class="addrow m-kg"><label class="sr" for="q-kg-CostaRicaCarlos">الكمية بالكيلو</label><input id="q-kg-CostaRicaCarlos" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="كيلو" dir="ltr"><button class="add" data-u="kg">أضف للطلب</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-CostaRicaCarlos">عدد الأكياس</label><input id="q-bag-CostaRicaCarlos" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="أكياس" dir="ltr"><button class="add" data-u="bag">أضف للطلب</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="costa-rica-carlos.html">ملف التذوق</a></div>
+</div></article><article class="card" data-key="ElSalvadorSantaRose" data-name="السلفادور – سانتا روز" data-kg='[121, 115, 105, 96]' data-bag='[42, 29.4, 25.2]'>
 <img src="img/30fbd6dd.jpg" alt="كيس سانتا روز" loading="lazy">
 <div class="body">
 <div><span class="muted sm">السلفادور</span><h3>سانتا روز</h3><p class="notes">توت، عنب، شوكولاتة داكنة</p></div>
 <div class="pills"><span class="pill">المعالجة: مجفف</span><span class="pill">إسبريسو وفلتر</span></div>
 <div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 كيلو+</span><b dir="ltr">121</b></div><div class="tier" data-i="1"><span>30 كيلو+</span><b dir="ltr">115</b></div><div class="tier" data-i="2"><span>50 كيلو+</span><b dir="ltr">105</b></div><div class="tier" data-i="3"><span>100 كيلو+</span><b dir="ltr">96</b></div></div>
 <div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>سعر البيع</span><b dir="ltr">42</b></div><div class="tier" data-i="1"><span>50 كيلو −30%</span><b dir="ltr">29.4</b></div><div class="tier" data-i="2"><span>100 كيلو −40%</span><b dir="ltr">25.2</b></div></div>
-<div class="total m-kg"></div><div class="total m-bag bagnote"></div>
-<div class="btns"><a class="btn light wa" target="_blank" rel="noopener" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>اطلب عبر واتساب</a><a class="btn ghost" href="el-salvador-santa-rose.html">ملف التذوق</a></div>
-</div></article><article class="card" data-name="كولومبيا – دي كاف" data-kg='[121, 115, 105, 96]'>
+<div class="addrow m-kg"><label class="sr" for="q-kg-ElSalvadorSantaRose">الكمية بالكيلو</label><input id="q-kg-ElSalvadorSantaRose" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="كيلو" dir="ltr"><button class="add" data-u="kg">أضف للطلب</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-ElSalvadorSantaRose">عدد الأكياس</label><input id="q-bag-ElSalvadorSantaRose" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="أكياس" dir="ltr"><button class="add" data-u="bag">أضف للطلب</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="el-salvador-santa-rose.html">ملف التذوق</a></div>
+</div></article><article class="card" data-key="ColombiaDecaf" data-name="كولومبيا – دي كاف" data-kg='[121, 115, 105, 96]' data-bag='[42, 29.4, 25.2]'>
 <img src="img/2a2d465a.jpg" alt="كيس دي كاف" loading="lazy">
 <div class="body">
 <div><span class="muted sm">كولومبيا</span><h3>دي كاف</h3><p class="notes">عسل، برتقال، تفاح، شوكولاتة بالحليب</p></div>
 <div class="pills"><span class="pill">المعالجة: شوقر كين</span><span class="pill">إسبريسو وفلتر</span></div>
 <div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 كيلو+</span><b dir="ltr">121</b></div><div class="tier" data-i="1"><span>30 كيلو+</span><b dir="ltr">115</b></div><div class="tier" data-i="2"><span>50 كيلو+</span><b dir="ltr">105</b></div><div class="tier" data-i="3"><span>100 كيلو+</span><b dir="ltr">96</b></div></div>
 <div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>سعر البيع</span><b dir="ltr">42</b></div><div class="tier" data-i="1"><span>50 كيلو −30%</span><b dir="ltr">29.4</b></div><div class="tier" data-i="2"><span>100 كيلو −40%</span><b dir="ltr">25.2</b></div></div>
-<div class="total m-kg"></div><div class="total m-bag bagnote"></div>
-<div class="btns"><a class="btn light wa" target="_blank" rel="noopener" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>اطلب عبر واتساب</a><a class="btn ghost" href="colombia-decaf.html">ملف التذوق</a></div>
-</div></article><article class="card" data-name="كولومبيا – تومس" data-kg='[106, 96, 86, 79]'>
+<div class="addrow m-kg"><label class="sr" for="q-kg-ColombiaDecaf">الكمية بالكيلو</label><input id="q-kg-ColombiaDecaf" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="كيلو" dir="ltr"><button class="add" data-u="kg">أضف للطلب</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-ColombiaDecaf">عدد الأكياس</label><input id="q-bag-ColombiaDecaf" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="أكياس" dir="ltr"><button class="add" data-u="bag">أضف للطلب</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="colombia-decaf.html">ملف التذوق</a></div>
+</div></article><article class="card" data-key="ColombiaThomas" data-name="كولومبيا – تومس" data-kg='[106, 96, 86, 79]' data-bag='[36, 25.2, 21.2]'>
 <img src="img/dc382fe2.jpg" alt="كيس تومس" loading="lazy">
 <div class="body">
 <div><span class="muted sm">كولومبيا</span><h3>تومس</h3><p class="notes">شوكولاتة، كراميل، قصب السكر، فاكهية</p></div>
 <div class="pills"><span class="pill">المعالجة: مغسول</span><span class="pill">فلتر</span></div>
 <div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 كيلو+</span><b dir="ltr">106</b></div><div class="tier" data-i="1"><span>30 كيلو+</span><b dir="ltr">96</b></div><div class="tier" data-i="2"><span>50 كيلو+</span><b dir="ltr">86</b></div><div class="tier" data-i="3"><span>100 كيلو+</span><b dir="ltr">79</b></div></div>
 <div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>سعر البيع</span><b dir="ltr">36</b></div><div class="tier" data-i="1"><span>50 كيلو −30%</span><b dir="ltr">25.2</b></div><div class="tier" data-i="2"><span>100 كيلو −40%</span><b dir="ltr">21.2</b></div></div>
-<div class="total m-kg"></div><div class="total m-bag bagnote"></div>
-<div class="btns"><a class="btn light wa" target="_blank" rel="noopener" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>اطلب عبر واتساب</a><a class="btn ghost" href="colombia-thomas.html">ملف التذوق</a></div>
-</div></article><article class="card" data-name="إندونيسيا – سومطرة" data-kg='[121, 114, 104, 95]'>
+<div class="addrow m-kg"><label class="sr" for="q-kg-ColombiaThomas">الكمية بالكيلو</label><input id="q-kg-ColombiaThomas" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="كيلو" dir="ltr"><button class="add" data-u="kg">أضف للطلب</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-ColombiaThomas">عدد الأكياس</label><input id="q-bag-ColombiaThomas" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="أكياس" dir="ltr"><button class="add" data-u="bag">أضف للطلب</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="colombia-thomas.html">ملف التذوق</a></div>
+</div></article><article class="card" data-key="IndonesiaSumatra" data-name="إندونيسيا – سومطرة" data-kg='[121, 114, 104, 95]' data-bag='[39, 27.3, 23.5]'>
 <img src="img/0bb76986.jpg" alt="كيس سومطرة" loading="lazy">
 <div class="body">
 <div><span class="muted sm">إندونيسيا</span><h3>سومطرة</h3><p class="notes">عنب، تفاح، فواكه مجففة، سكر بني</p></div>
 <div class="pills"><span class="pill">المعالجة: مجفف</span><span class="pill">إسبريسو وفلتر</span></div>
 <div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 كيلو+</span><b dir="ltr">121</b></div><div class="tier" data-i="1"><span>30 كيلو+</span><b dir="ltr">114</b></div><div class="tier" data-i="2"><span>50 كيلو+</span><b dir="ltr">104</b></div><div class="tier" data-i="3"><span>100 كيلو+</span><b dir="ltr">95</b></div></div>
 <div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>سعر البيع</span><b dir="ltr">39</b></div><div class="tier" data-i="1"><span>50 كيلو −30%</span><b dir="ltr">27.3</b></div><div class="tier" data-i="2"><span>100 كيلو −40%</span><b dir="ltr">23.5</b></div></div>
-<div class="total m-kg"></div><div class="total m-bag bagnote"></div>
-<div class="btns"><a class="btn light wa" target="_blank" rel="noopener" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>اطلب عبر واتساب</a><a class="btn ghost" href="indonesia-sumatra.html">ملف التذوق</a></div>
-</div></article><article class="card" data-name="إثيوبيا – قيدب" data-kg='[121, 115, 105, 96]'>
+<div class="addrow m-kg"><label class="sr" for="q-kg-IndonesiaSumatra">الكمية بالكيلو</label><input id="q-kg-IndonesiaSumatra" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="كيلو" dir="ltr"><button class="add" data-u="kg">أضف للطلب</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-IndonesiaSumatra">عدد الأكياس</label><input id="q-bag-IndonesiaSumatra" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="أكياس" dir="ltr"><button class="add" data-u="bag">أضف للطلب</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="indonesia-sumatra.html">ملف التذوق</a></div>
+</div></article><article class="card" data-key="Main" data-name="إثيوبيا – قيدب" data-kg='[121, 115, 105, 96]' data-bag='[42, 29.4, 25.2]'>
 <img src="img/486196fb.jpg" alt="كيس قيدب" loading="lazy">
 <div class="body">
 <div><span class="muted sm">إثيوبيا</span><h3>قيدب</h3><p class="notes">شاي أسود، يوسفي، توت أزرق</p></div>
 <div class="pills"><span class="pill">المعالجة: مجفف</span><span class="pill">إسبريسو وفلتر</span></div>
 <div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 كيلو+</span><b dir="ltr">121</b></div><div class="tier" data-i="1"><span>30 كيلو+</span><b dir="ltr">115</b></div><div class="tier" data-i="2"><span>50 كيلو+</span><b dir="ltr">105</b></div><div class="tier" data-i="3"><span>100 كيلو+</span><b dir="ltr">96</b></div></div>
 <div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>سعر البيع</span><b dir="ltr">42</b></div><div class="tier" data-i="1"><span>50 كيلو −30%</span><b dir="ltr">29.4</b></div><div class="tier" data-i="2"><span>100 كيلو −40%</span><b dir="ltr">25.2</b></div></div>
-<div class="total m-kg"></div><div class="total m-bag bagnote"></div>
-<div class="btns"><a class="btn light wa" target="_blank" rel="noopener" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>اطلب عبر واتساب</a><a class="btn ghost" href="ethiopia-gedeb.html">ملف التذوق</a></div>
+<div class="addrow m-kg"><label class="sr" for="q-kg-Main">الكمية بالكيلو</label><input id="q-kg-Main" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="كيلو" dir="ltr"><button class="add" data-u="kg">أضف للطلب</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-Main">عدد الأكياس</label><input id="q-bag-Main" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="أكياس" dir="ltr"><button class="add" data-u="bag">أضف للطلب</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="ethiopia-gedeb.html">ملف التذوق</a></div>
 </div></article></div>
 </section>
 <section class="wrap" style="padding-top:48px">
 <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px"><h2>المحاصيل الفاخرة</h2><span class="muted unit"></span></div>
-<div class="grid"><article class="card" data-name="اليمن – صدام" data-kg='[204, 194, 185, 175]'>
+<div class="grid"><article class="card" data-key="YemenSaddam" data-name="اليمن – صدام" data-kg='[204, 194, 185, 175]' data-bag='[59, 44.25, 41.3]'>
 <img src="img/f6ed9736.jpg" alt="كيس صدام" loading="lazy">
 <div class="body">
 <div><span class="muted sm">اليمن</span><h3>صدام</h3><p class="notes">كراميل، ياسمين، قرفة، زبيب</p></div>
 <div class="pills"><span class="pill">المعالجة: مجفف</span><span class="pill">إسبريسو وفلتر</span></div>
 <div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 كيلو+</span><b dir="ltr">204</b></div><div class="tier" data-i="1"><span>30 كيلو+</span><b dir="ltr">194</b></div><div class="tier" data-i="2"><span>50 كيلو+</span><b dir="ltr">185</b></div><div class="tier" data-i="3"><span>100 كيلو+</span><b dir="ltr">175</b></div></div>
 <div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>سعر البيع</span><b dir="ltr">59</b></div><div class="tier" data-i="1"><span>50 كيلو −25%</span><b dir="ltr">44.25</b></div><div class="tier" data-i="2"><span>100 كيلو −30%</span><b dir="ltr">41.3</b></div></div>
-<div class="total m-kg"></div><div class="total m-bag bagnote"></div>
-<div class="btns"><a class="btn light wa" target="_blank" rel="noopener" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>اطلب عبر واتساب</a><a class="btn ghost" href="yemen-saddam.html">ملف التذوق</a></div>
-</div></article><article class="card" data-name="إثيوبيا – واين" data-kg='[202, 192, 183, 173]'>
+<div class="addrow m-kg"><label class="sr" for="q-kg-YemenSaddam">الكمية بالكيلو</label><input id="q-kg-YemenSaddam" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="كيلو" dir="ltr"><button class="add" data-u="kg">أضف للطلب</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-YemenSaddam">عدد الأكياس</label><input id="q-bag-YemenSaddam" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="أكياس" dir="ltr"><button class="add" data-u="bag">أضف للطلب</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="yemen-saddam.html">ملف التذوق</a></div>
+</div></article><article class="card" data-key="EthiopiaWine" data-name="إثيوبيا – واين" data-kg='[202, 192, 183, 173]' data-bag='[59, 44.25, 41.3]'>
 <img src="img/1b317981.jpg" alt="كيس واين" loading="lazy">
 <div class="body">
 <div><span class="muted sm">إثيوبيا</span><h3>واين</h3><p class="notes">عنب، شوكولاتة، أناناس، برتقال</p></div>
 <div class="pills"><span class="pill">المعالجة: تخمير</span><span class="pill">إسبريسو وفلتر</span></div>
 <div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 كيلو+</span><b dir="ltr">202</b></div><div class="tier" data-i="1"><span>30 كيلو+</span><b dir="ltr">192</b></div><div class="tier" data-i="2"><span>50 كيلو+</span><b dir="ltr">183</b></div><div class="tier" data-i="3"><span>100 كيلو+</span><b dir="ltr">173</b></div></div>
 <div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>سعر البيع</span><b dir="ltr">59</b></div><div class="tier" data-i="1"><span>50 كيلو −25%</span><b dir="ltr">44.25</b></div><div class="tier" data-i="2"><span>100 كيلو −30%</span><b dir="ltr">41.3</b></div></div>
-<div class="total m-kg"></div><div class="total m-bag bagnote"></div>
-<div class="btns"><a class="btn light wa" target="_blank" rel="noopener" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>اطلب عبر واتساب</a><a class="btn ghost" href="ethiopia-wine.html">ملف التذوق</a></div>
-</div></article><article class="card" data-name="البرازيل – مالتيزرز" data-kg='[179, 159, 143, 139]'>
+<div class="addrow m-kg"><label class="sr" for="q-kg-EthiopiaWine">الكمية بالكيلو</label><input id="q-kg-EthiopiaWine" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="كيلو" dir="ltr"><button class="add" data-u="kg">أضف للطلب</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-EthiopiaWine">عدد الأكياس</label><input id="q-bag-EthiopiaWine" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="أكياس" dir="ltr"><button class="add" data-u="bag">أضف للطلب</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="ethiopia-wine.html">ملف التذوق</a></div>
+</div></article><article class="card" data-key="BrazilMaltesers" data-name="البرازيل – مالتيزرز" data-kg='[179, 159, 143, 139]' data-bag='[52, 39, 36.4]'>
 <img src="img/dff22292.jpg" alt="كيس مالتيزرز" loading="lazy">
 <div class="body">
 <div><span class="muted sm">البرازيل</span><h3>مالتيزرز</h3><p class="notes">بندق، جوز الهند، شوكولاتة</p></div>
 <div class="pills"><span class="pill">المعالجة: انفيوجن شوكليت</span><span class="pill">إسبريسو وفلتر</span></div>
 <div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 كيلو+</span><b dir="ltr">179</b></div><div class="tier" data-i="1"><span>30 كيلو+</span><b dir="ltr">159</b></div><div class="tier" data-i="2"><span>50 كيلو+</span><b dir="ltr">143</b></div><div class="tier" data-i="3"><span>100 كيلو+</span><b dir="ltr">139</b></div></div>
 <div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>سعر البيع</span><b dir="ltr">52</b></div><div class="tier" data-i="1"><span>50 كيلو −25%</span><b dir="ltr">39</b></div><div class="tier" data-i="2"><span>100 كيلو −30%</span><b dir="ltr">36.4</b></div></div>
-<div class="total m-kg"></div><div class="total m-bag bagnote"></div>
-<div class="btns"><a class="btn light wa" target="_blank" rel="noopener" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>اطلب عبر واتساب</a><a class="btn ghost" href="brazil-maltesers.html">ملف التذوق</a></div>
+<div class="addrow m-kg"><label class="sr" for="q-kg-BrazilMaltesers">الكمية بالكيلو</label><input id="q-kg-BrazilMaltesers" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="كيلو" dir="ltr"><button class="add" data-u="kg">أضف للطلب</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-BrazilMaltesers">عدد الأكياس</label><input id="q-bag-BrazilMaltesers" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="أكياس" dir="ltr"><button class="add" data-u="bag">أضف للطلب</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="brazil-maltesers.html">ملف التذوق</a></div>
 </div></article></div>
 </section>
 <section class="wrap m-bag" style="padding-top:48px">
@@ -275,45 +318,89 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ju
 <dialog id="dlg-bank" aria-labelledby="t-bank"><div class="dlg"><div class="dlghead"><h2 id="t-bank">الحساب البنكي</h2><button class="x" aria-label="إغلاق">×</button></div><dl>
 <div><dt>اسم المستفيد</dt><dd>شركة نكهة البن المحدودة</dd></div><div><dt>رقم الحساب</dt><dd dir="ltr">68203082251002</dd></div><div><dt>رقم الآيبان</dt><dd dir="ltr">SA8405000068203082251002</dd></div></dl>
 <button class="copy" id="copy">نسخ رقم الآيبان</button></div></dialog>
+<div class="obar" id="obar" hidden><div class="wrap obarin">
+<div><b id="ocount"></b><span class="muted sm" id="osub" style="display:block"></span></div>
+<div class="obtns"><button class="btn ghost" id="oview">عرض الطلب</button><a class="btn accent" id="osend" href="#" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>إرسال الطلب عبر واتساب</a></div>
+</div></div>
+<dialog id="dlg-order-list" aria-labelledby="t-ol"><div class="dlg"><div class="dlghead"><h2 id="t-ol">طلبك</h2><button class="x" aria-label="إغلاق">×</button></div>
+<div id="olist"></div><div id="ototals"></div><p class="warn" id="owarn" hidden></p>
+<div class="btns"><button class="btn ghost" id="oclear">تفريغ الطلب</button><a class="btn accent" id="osend2" href="#" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>إرسال الطلب عبر واتساب</a></div></div></dialog>
 <footer><div class="wrap">
 <span class="bebas" style="font-size:24px;letter-spacing:3px;color:#F4EEE4" dir="ltr">ASANTE BY FARMERS</span>
 <div style="display:flex;flex-wrap:wrap;gap:18px"><a href="https://asante-store.com/" target="_blank" rel="noopener">asante-store.com</a><a href="https://linktr.ee/asante_coffee" target="_blank" rel="noopener" dir="ltr">@asante_coffee</a><span dir="ltr">+966537809377</span></div>
 </div></footer>
 <script>
 (function(){
-var WA='https://wa.me/966537809377?text=',mode='kg',qty=10,bagT=1,cname='';
+var WA='https://wa.me/966537809377?text=',mode='kg',bagT=1,cname='',cart={};
 var nameEl=document.getElementById('cname');
-try{cname=localStorage.getItem('asanteName')||'';nameEl.value=cname}catch(e){}
+try{cname=localStorage.getItem('asanteName')||'';nameEl.value=cname;cart=JSON.parse(localStorage.getItem('asanteCart')||'{}')||{}}catch(e){cart={}}
+function save(){try{localStorage.setItem('asanteCart',JSON.stringify(cart))}catch(e){}}
 nameEl.addEventListener('input',function(){cname=nameEl.value.trim();try{localStorage.setItem('asanteName',cname)}catch(e){};render()});
 function fmt(n){return Number(n).toLocaleString('en-US',{maximumFractionDigits:2})}
+function r2(n){return Math.round(n*100)/100}
 function tierOf(q){return q>=100?3:q>=50?2:q>=30?1:q>=10?0:-1}
+var BAGL=['سعر إعادة البيع','شريحة 50 كيلو','شريحة 100 كيلو'];
+var cards={};document.querySelectorAll('.card[data-key]').forEach(function(c){cards[c.dataset.key]=c});
+function totals(){
+  var kgTotal=0,lines=[],sub=0;
+  Object.keys(cart).forEach(function(k){var c=cards[k];if(!c){delete cart[k];return};kgTotal+=(cart[k].kg||0)});
+  var t=tierOf(kgTotal),tp=t<0?0:t;
+  Object.keys(cart).forEach(function(k){
+    var c=cards[k],it=cart[k],kg=JSON.parse(c.dataset.kg),bag=JSON.parse(c.dataset.bag),name=c.dataset.name;
+    if(it.kg){var p=kg[tp],v=r2(it.kg*p);sub+=v;lines.push({k:k,u:'kg',txt:name+': '+it.kg+' كيلو × '+fmt(p)+' = '+fmt(v)+' ر.س'})}
+    if(it.bag){var bt=it.bt==null?bagT:it.bt,pb=bag[bt],vb=r2(it.bag*pb);sub+=vb;lines.push({k:k,u:'bag',txt:name+': '+it.bag+' كيس 225 جم × '+fmt(pb)+' ('+BAGL[bt]+') = '+fmt(vb)+' ر.س'})}
+  });
+  sub=r2(sub);var vat=r2(sub*0.15);
+  return {kgTotal:kgTotal,tier:t,lines:lines,sub:sub,vat:vat,tot:r2(sub+vat)};
+}
+function waLink(T){
+  var NL=String.fromCharCode(10);var m=(cname?('مرحباً، معك '+cname+'.'):'مرحباً،')+NL+'أبغى أطلب الآتي:'+NL;
+  T.lines.forEach(function(l){m+='• '+l.txt+''+NL});
+  if(T.kgTotal)m+='مجموع الكيلو: '+T.kgTotal+' كيلو'+NL;
+  m+='المجموع: '+fmt(T.sub)+' ر.س'+NL+'الضريبة 15%: '+fmt(T.vat)+' ر.س'+NL+'الإجمالي شامل الضريبة: '+fmt(T.tot)+' ر.س';
+  return WA+encodeURIComponent(m);
+}
 function render(){
   document.body.classList.toggle('bag',mode==='bag');
   document.querySelectorAll('.tab').forEach(function(b){b.setAttribute('aria-selected',b.dataset.mode===mode?'true':'false')});
   document.querySelectorAll('.unit').forEach(function(u){u.textContent=mode==='kg'?'السعر لكل 1 كجم':'السعر لكل كيس 225 جم'});
-  var t=tierOf(qty);
-  document.getElementById('warn').hidden=t>=0;
-  document.querySelectorAll('#kgchips .chip').forEach(function(c,i){c.classList.toggle('on',i===t)});
+  var T=totals(),t=T.tier,hl=T.kgTotal?t:-1;
+  document.querySelectorAll('#kgchips .chip').forEach(function(c,i){c.classList.toggle('on',i===hl)});
+  document.getElementById('kgsum').textContent=T.kgTotal?('مجموع الكيلو في طلبك: '+T.kgTotal+' كيلو'+(t<0?' (الحد الأدنى 10 كيلو)':'')):'أضف المحاصيل والكميات من البطاقات، والسعر يتحدد تلقائياً.';
   document.querySelectorAll('#bagchips .chip').forEach(function(c,i){c.classList.toggle('on',i===bagT)});
-  document.querySelectorAll('.card').forEach(function(card){
-    var kg=JSON.parse(card.dataset.kg),name=card.dataset.name;
-    card.querySelectorAll('.k4 .tier').forEach(function(el,i){el.classList.toggle('on',i===t)});
+  Object.keys(cards).forEach(function(k){
+    var card=cards[k],it=cart[k]||{};
+    card.querySelectorAll('.k4 .tier').forEach(function(el,i){el.classList.toggle('on',i===hl)});
     card.querySelectorAll('.k3 .tier').forEach(function(el,i){el.classList.toggle('on',i===bagT)});
-    var sub=t>=0?qty*kg[t]:0,vat=Math.round(sub*0.15*100)/100,tot=Math.round((sub+vat)*100)/100;
-    card.querySelector('.total.m-kg').innerHTML=t>=0?('<span style="display:block;font-size:13px;font-weight:500;color:#B9B2A6">'+qty+' كيلو × '+fmt(kg[t])+' = '+fmt(sub)+' ر.س + ضريبة 15% '+fmt(vat)+' ر.س</span>الإجمالي شامل الضريبة: '+fmt(tot)+' ر.س'):'';
-    card.querySelector('.bagnote').textContent=bagT===0?'سعر إعادة البيع الرسمي للكيس':'سعر الكيس 225 جم بعد الخصم';
-    var who=cname?('مرحباً، معك '+cname+'. '):'مرحباً، ';var msg=who+(mode==='kg'?('أبغى أطلب جملة: '+name+'، الكمية '+qty+' كيلو'+(t>=0?('، الإجمالي شامل الضريبة '+fmt(tot)+' ر.س'):'')):('أبغى أطلب أكياس 225 جم: '+name));
-    card.querySelector('.wa').href=WA+encodeURIComponent(msg);
+    var parts=[];if(it.kg)parts.push(it.kg+' كيلو');if(it.bag)parts.push(it.bag+' كيس');
+    card.querySelector('.incart').textContent=parts.length?('في طلبك: '+parts.join(' + ')):'';
   });
+  var n=T.lines.length,bar=document.getElementById('obar');
+  bar.hidden=!n;document.body.classList.toggle('hasorder',!!n);
+  document.getElementById('ocount').textContent=(n===1?'صنف واحد في الطلب':n===2?'صنفان في الطلب':n+' أصناف في الطلب')+' · الإجمالي شامل الضريبة: '+fmt(T.tot)+' ر.س';
+  document.getElementById('osub').textContent=T.kgTotal?('مجموع الكيلو: '+T.kgTotal+' كيلو'):'';
+  var low=T.kgTotal>0&&T.kgTotal<10,link=low?'#':waLink(T);
+  ['osend','osend2'].forEach(function(id){var a=document.getElementById(id);a.href=link;a.setAttribute('aria-disabled',low?'true':'false');a.style.opacity=low?'.5':'1'});
+  var w=document.getElementById('owarn');w.hidden=!low;w.textContent=low?'الحد الأدنى لطلب الجملة بالكيلو 10 كيلو لمجموع الطلب. مجموعك الآن '+T.kgTotal+' كيلو.':'';
+  var ol=document.getElementById('olist');ol.innerHTML='';
+  T.lines.forEach(function(l){var d=document.createElement('div');d.className='oline';var sp=document.createElement('span');sp.textContent=l.txt;var b=document.createElement('button');b.textContent='حذف';b.addEventListener('click',function(){delete cart[l.k][l.u];if(l.u==='bag')delete cart[l.k].bt;if(!cart[l.k].kg&&!cart[l.k].bag)delete cart[l.k];save();render()});d.appendChild(sp);d.appendChild(b);ol.appendChild(d)});
+  document.getElementById('ototals').innerHTML='<div class="trow"><span>المجموع</span><span>'+fmt(T.sub)+' ر.س</span></div><div class="trow"><span>الضريبة 15%</span><span>'+fmt(T.vat)+' ر.س</span></div><div class="trow big"><span>الإجمالي شامل الضريبة</span><span>'+fmt(T.tot)+' ر.س</span></div>';
 }
+document.querySelectorAll('.card[data-key]').forEach(function(card){
+  card.querySelectorAll('.add').forEach(function(btn){btn.addEventListener('click',function(){
+    var u=btn.dataset.u,inp=card.querySelector('.q[data-u='+u+']'),q=Math.floor(Number(inp.value)||0);
+    if(q<=0){inp.focus();return}
+    var k=card.dataset.key;cart[k]=cart[k]||{};cart[k][u]=q;if(u==='bag')cart[k].bt=bagT;inp.value='';save();render();
+  })});
+});
 document.querySelectorAll('.tab').forEach(function(b){b.addEventListener('click',function(){mode=b.dataset.mode;render()})});
-var inp=document.getElementById('qty');
-inp.addEventListener('input',function(){qty=Math.max(0,Math.floor(Number(inp.value)||0));render()});
-document.querySelectorAll('#kgchips .chip').forEach(function(c){c.addEventListener('click',function(){qty=Number(c.dataset.q);inp.value=qty;render()})});
-document.querySelectorAll('#bagchips .chip').forEach(function(c){c.addEventListener('click',function(){bagT=Number(c.dataset.t);render()})});
-document.getElementById('copy').addEventListener('click',function(){var b=this;try{navigator.clipboard.writeText('SA8405000068203082251002').then(function(){b.textContent='تم نسخ الآيبان'})}catch(e){}});
+document.querySelectorAll('#bagchips .chip').forEach(function(c){c.addEventListener('click',function(){bagT=Number(c.dataset.t);Object.keys(cart).forEach(function(k){if(cart[k].bag)cart[k].bt=bagT});save();render()})});
+['osend','osend2'].forEach(function(id){document.getElementById(id).addEventListener('click',function(e){if(this.getAttribute('aria-disabled')==='true'){e.preventDefault();var d=document.getElementById('dlg-order-list');if(!d.open)d.showModal()}})});
+document.getElementById('oview').addEventListener('click',function(){document.getElementById('dlg-order-list').showModal()});
+document.getElementById('oclear').addEventListener('click',function(){cart={};save();render();document.getElementById('dlg-order-list').close()});
 document.querySelectorAll('.navbtn').forEach(function(b){b.addEventListener('click',function(){var d=document.getElementById(b.dataset.dlg);if(d.showModal)d.showModal();else d.setAttribute('open','')})});
 document.querySelectorAll('dialog').forEach(function(d){d.querySelector('.x').addEventListener('click',function(){d.close()});d.addEventListener('click',function(e){if(e.target===d)d.close()})});
+document.getElementById('copy').addEventListener('click',function(){var b=this;try{navigator.clipboard.writeText('SA8405000068203082251002').then(function(){b.textContent='تم نسخ الآيبان'})}catch(e){}});
 render();
 })();
 </script>
