@@ -50,7 +50,8 @@ th{text-align:start;padding:8px 6px;font-size:13px;color:#B9B2A6;border-bottom:1
 ul{margin:0;padding-inline-start:20px;display:flex;flex-direction:column;gap:8px;line-height:1.7;color:#D8D1C5}
 dl{margin:0;display:flex;flex-direction:column;gap:10px}dt{font-size:13px;color:#B9B2A6}dd{margin:0;font-weight:600;word-break:break-all}
 .copy{align-self:flex-start;min-height:44px;padding:0 20px;border-radius:12px;border:1px solid rgba(244,238,228,.3);background:transparent;color:#F4EEE4;font-size:15px;font-weight:600}
-body.bag .m-kg,body:not(.bag) .m-bag{display:none}
+body:not([data-mode=kg]) .m-kg,body:not([data-mode=bag]) .m-bag{display:none!important}
+body[data-mode=drip] .crops,body[data-mode=matcha] .crops,body[data-mode=tools] .crops,body:not([data-mode=drip]) .s-drip,body:not([data-mode=matcha]) .s-matcha,body:not([data-mode=tools]) .s-tools{display:none}
 .navbtn{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid rgba(244,238,228,.3);background:transparent;color:#F4EEE4;font-size:15px;font-weight:600}.navbtn:hover{border-color:#FF6A33;color:#FF7A45}
 .tabsnav{gap:8px}
 dialog{border:0;padding:0;background:transparent;max-width:min(560px,92vw);width:100%}dialog::backdrop{background:rgba(10,12,20,.7)}
@@ -93,6 +94,9 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ju
 <div class="tabs" role="tablist" aria-label="نوع القائمة">
 <button class="tab" role="tab" aria-selected="true" data-mode="kg">أسعار الكيلو</button>
 <button class="tab" role="tab" aria-selected="false" data-mode="bag">أكياس 225 جم (إعادة البيع)</button>
+<button class="tab" role="tab" aria-selected="false" data-mode="drip">الأظرف</button>
+<button class="tab" role="tab" aria-selected="false" data-mode="matcha">الماتشا</button>
+<button class="tab" role="tab" aria-selected="false" data-mode="tools">الأدوات</button>
 </div>
 <div class="ctrl m-kg">
 <span style="font-size:17px;font-weight:600">السعر حسب مجموع طلبك:</span>
@@ -106,7 +110,7 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ju
 <span class="muted" style="font-size:15px;flex-basis:100%" id="bagnote"></span>
 </div>
 </section>
-<section class="wrap" style="padding-top:48px">
+<section class="wrap crops" style="padding-top:48px">
 <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px"><h2>المحاصيل</h2><span class="muted unit"></span></div>
 <div class="grid"><article class="card" data-key="BrazilMarcelo" data-name="البرازيل – مارسيلو" data-kg='[91, 83, 78, 70]' data-bag='[32, 22.4, 19.2]'>
 <img src="img/ba43046b.jpg" alt="كيس مارسيلو" loading="lazy">
@@ -253,7 +257,7 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ju
 <div class="btns"><a class="btn ghost" href="ethiopia-gedeb.html">ملف التذوق</a></div>
 </div></article></div>
 </section>
-<section class="wrap" style="padding-top:48px">
+<section class="wrap crops" style="padding-top:48px">
 <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px"><h2>المحاصيل الفاخرة</h2><span class="muted unit"></span></div>
 <div class="grid"><article class="card" data-key="YemenSaddam" data-name="اليمن – صدام" data-kg='[204, 194, 185, 175]' data-bag='[59, 44.25, 41.3]'>
 <img src="img/f6ed9736.jpg" alt="كيس صدام" loading="lazy">
@@ -290,13 +294,13 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ju
 <div class="btns"><a class="btn ghost" href="brazil-maltesers.html">ملف التذوق</a></div>
 </div></article></div>
 </section>
-<section class="wrap" style="padding-top:48px">
+<section class="wrap s-matcha" style="padding-top:32px">
 <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px"><h2>الماتشا</h2><span class="muted">السعر لكل علبة</span></div>
 <div class="grid"><article class="card"><img src="img/matcha.jpg" alt="ماتشا – اليابان" loading="lazy" style="object-fit:cover;background:#fff">
 <div class="body"><div><h3>ماتشا – اليابان</h3><span class="muted sm">احتفالية عضوية فاخرة · علبة 30 جم</span></div>
 <div class="tiers k3"><div class="tier"><span>سعر البيع</span><b dir="ltr">86</b></div><div class="tier"><span>كرتون −30%</span><b dir="ltr">60.2</b></div><div class="tier"><span>كرتونين+ −40%</span><b dir="ltr">51.6</b></div></div></div></article></div>
 </section>
-<section class="wrap" style="padding-top:48px">
+<section class="wrap s-drip" style="padding-top:32px">
 <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px"><h2>أظرف القهوة سريعة التحضير</h2><span class="muted">السعر لكل بوكس</span></div>
 <div class="grid"><article class="card"><img src="img/drip-mariam.jpg" alt="إثيوبيا – مريم" loading="lazy" style="object-fit:contain;background:#fff">
 <div class="body"><div><h3>إثيوبيا – مريم</h3><span class="muted sm">البوكس 5 أظرف × 12 جم</span></div>
@@ -308,7 +312,7 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ju
 <div class="body"><div><h3>أوغندا – نانسي</h3><span class="muted sm">البوكس 5 أظرف × 12 جم</span></div>
 <div class="tiers k3"><div class="tier"><span>سعر البيع</span><b dir="ltr">26</b></div><div class="tier"><span>40 بوكس+ −30%</span><b dir="ltr">17.5</b></div><div class="tier"><span>100 بوكس+ −45%</span><b dir="ltr">14.3</b></div></div></div></article></div>
 </section>
-<section class="wrap" style="padding-top:48px">
+<section class="wrap s-tools" style="padding-top:32px">
 <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px"><h2>أدوات القهوة</h2><span class="muted">السعر لكل قطعة</span></div>
 <div class="grid"><article class="card"><img src="img/funnel.jpg" alt="قمع كيميائي" loading="lazy" style="object-fit:contain;background:#fff">
 <div class="body"><div><h3>قمع كيميائي</h3><span class="muted sm">لكل قطعة</span></div>
@@ -371,7 +375,7 @@ function waLink(T){
   return WA+encodeURIComponent(m);
 }
 function render(){
-  document.body.classList.toggle('bag',mode==='bag');
+  document.body.dataset.mode=mode;
   document.querySelectorAll('.tab').forEach(function(b){b.setAttribute('aria-selected',b.dataset.mode===mode?'true':'false')});
   document.querySelectorAll('.unit').forEach(function(u){u.textContent=mode==='kg'?'السعر لكل 1 كجم':'السعر لكل كيس 225 جم'});
   var T=totals(),t=T.tier,hl=T.kgTotal?t:-1;
