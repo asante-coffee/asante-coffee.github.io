@@ -82,7 +82,7 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ju
 <section class="wrap" style="padding-top:56px;display:flex;flex-direction:column;gap:14px">
 <span class="bebas" style="font-size:20px;letter-spacing:4px;color:#FF6A33" dir="ltr">WHOLESALE PRICE LIST</span>
 <h1>أسعار الجملة</h1>
-<p class="lead">قائمة أسعار محاصيل محمصة أسانتي لعملاء الجملة وإعادة البيع. الأسعار بالريال السعودي وغير شاملة ضريبة القيمة المضافة (15%)، وقابلة للتغيير. أضف أكثر من محصول لطلبك، والشريحة تُحسب على مجموع الكيلو في الطلب كامل. الإجمالي في السلة شامل الضريبة.</p>
+<p class="lead">قائمة أسعار محاصيل محمصة أسانتي لعملاء الجملة وإعادة البيع. الأسعار بالريال السعودي وغير شاملة ضريبة القيمة المضافة (15%)، وقابلة للتغيير. أضف أكثر من محصول لطلبك، والسعر يُحسب على مجموع الكيلو في الطلب كامل. الإجمالي في السلة شامل الضريبة.</p>
 </section>
 <section id="prices" class="wrap" style="padding-top:28px">
 <div class="ctrl" style="margin:0 0 16px">
@@ -95,14 +95,14 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ju
 <button class="tab" role="tab" aria-selected="false" data-mode="bag">أكياس 225 جم (إعادة البيع)</button>
 </div>
 <div class="ctrl m-kg">
-<span style="font-size:17px;font-weight:600">الشريحة حسب مجموع طلبك:</span>
+<span style="font-size:17px;font-weight:600">السعر حسب مجموع طلبك:</span>
 <div style="display:flex;flex-wrap:wrap;gap:8px" id="kgchips"><span class="chip" data-q="10">10 كيلو+</span><span class="chip" data-q="30">30 كيلو+</span><span class="chip" data-q="50">50 كيلو+</span><span class="chip" data-q="100">100 كيلو+</span></div>
 <span class="muted" style="font-size:15px" id="kgsum">أضف المحاصيل والكميات من البطاقات، والسعر يتحدد تلقائياً.</span>
 </div>
 
 <div class="ctrl m-bag">
-<span style="font-size:17px;font-weight:600">الشريحة حسب عدد الأكياس في طلبك:</span>
-<div style="display:flex;flex-wrap:wrap;gap:8px" id="bagchips"><span class="chip" data-t="1">50 – 180 كيس: سعر شريحة 50 كيلو</span><span class="chip" data-t="2">أكثر من 180 كيس: سعر شريحة 100 كيلو</span></div>
+<span style="font-size:17px;font-weight:600">السعر حسب عدد الأكياس في طلبك:</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px" id="bagchips"><span class="chip" data-t="1">50 – 180 كيس: سعر 50 كيلو</span><span class="chip" data-t="2">أكثر من 180 كيس: سعر 100 كيلو</span></div>
 <span class="muted" style="font-size:15px;flex-basis:100%" id="bagnote"></span>
 </div>
 </section>
@@ -340,7 +340,7 @@ nameEl.addEventListener('input',function(){cname=nameEl.value.trim();try{localSt
 function fmt(n){return Number(n).toLocaleString('en-US',{maximumFractionDigits:2})}
 function r2(n){return Math.round(n*100)/100}
 function tierOf(q){return q>=100?3:q>=50?2:q>=30?1:q>=10?0:-1}
-var BAGL=['سعر إعادة البيع','سعر شريحة 50 كيلو','سعر شريحة 100 كيلو'];
+var BAGL=['سعر إعادة البيع','سعر 50 كيلو','سعر 100 كيلو'];
 var cards={};document.querySelectorAll('.card[data-key]').forEach(function(c){cards[c.dataset.key]=c});
 function totals(){
   var kgTotal=0,bagTotal=0,lines=[],sub=0;
