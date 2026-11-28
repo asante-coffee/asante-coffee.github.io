@@ -20,8 +20,8 @@ header .wrap{padding-top:20px;padding-bottom:20px;display:flex;flex-wrap:wrap;al
 nav{display:flex;flex-wrap:wrap;gap:24px;font-weight:500}
 h1{margin:0;font-size:clamp(38px,6vw,56px);line-height:1.15}h2{margin:0;font-size:clamp(26px,4vw,36px)}h3{margin:0;font-size:24px}
 .lead{margin:0;font-size:18px;line-height:1.8;color:#D8D1C5;max-width:680px}
-.tabs{display:inline-flex;flex-wrap:wrap;gap:6px;padding:6px;background:#1C2133;border-radius:16px}
-.tab{min-height:48px;padding:0 22px;border:0;border-radius:12px;background:transparent;color:#F4EEE4;font-size:17px;font-weight:600}
+.tabs{display:flex;flex-wrap:wrap;max-width:100%;width:max-content;gap:6px;padding:6px;background:#1C2133;border-radius:16px}
+.tab{flex:1 1 auto;white-space:nowrap;min-height:48px;padding:0 18px;border:0;border-radius:12px;background:transparent;color:#F4EEE4;font-size:17px;font-weight:600}
 .tab[aria-selected=true]{background:#FF6A33;color:#141826;font-weight:700}
 .ctrl{background:#1C2133;border-radius:22px;padding:22px;display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:16px}
 .ctrl input{width:120px;min-height:48px;padding:0 14px;border-radius:12px;border:1px solid rgba(244,238,228,.3);background:#141826;color:#F4EEE4;font-size:20px;font-weight:600;text-align:center}
@@ -93,7 +93,7 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ju
 </div>
 <div class="tabs" role="tablist" aria-label="نوع القائمة">
 <button class="tab" role="tab" aria-selected="true" data-mode="kg">أسعار الكيلو</button>
-<button class="tab" role="tab" aria-selected="false" data-mode="bag">أكياس 225 جم (إعادة البيع)</button>
+<button class="tab" role="tab" aria-selected="false" data-mode="bag">أكياس 225 جم</button>
 <button class="tab" role="tab" aria-selected="false" data-mode="drip">الأظرف</button>
 <button class="tab" role="tab" aria-selected="false" data-mode="matcha">الماتشا</button>
 <button class="tab" role="tab" aria-selected="false" data-mode="tools">الأدوات</button>
