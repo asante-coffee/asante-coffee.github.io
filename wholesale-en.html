@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Wholesale Prices — Asante</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#141826;color:#F4EEE4;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif}
+a{color:#F4EEE4;text-decoration:none}a:hover{color:#FF7A45}
+button,input{font-family:inherit}button{cursor:pointer}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+.bebas{font-family:'Bebas Neue',sans-serif}
+.muted{color:#B9B2A6}.sm{font-size:14px}
+header{border-bottom:1px solid rgba(244,238,228,.12)}
+header .wrap{padding-top:20px;padding-bottom:20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-weight:500}
+h1{margin:0;font-size:clamp(38px,6vw,56px);line-height:1.15}h2{margin:0;font-size:clamp(26px,4vw,36px)}h3{margin:0;font-size:24px}
+.lead{margin:0;font-size:18px;line-height:1.8;color:#D8D1C5;max-width:680px}
+.tabs{display:flex;flex-wrap:wrap;max-width:100%;width:max-content;gap:6px;padding:6px;background:#1C2133;border-radius:16px}
+.tab{flex:1 1 auto;white-space:nowrap;min-height:48px;padding:0 18px;border:0;border-radius:12px;background:transparent;color:#F4EEE4;font-size:17px;font-weight:600}
+.tab[aria-selected=true]{background:#FF6A33;color:#141826;font-weight:700}
+.ctrl{background:#1C2133;border-radius:22px;padding:22px;display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:16px}
+.ctrl input{width:120px;min-height:48px;padding:0 14px;border-radius:12px;border:1px solid rgba(244,238,228,.3);background:#141826;color:#F4EEE4;font-size:20px;font-weight:600;text-align:center}
+.chip{min-height:44px;padding:0 18px;border-radius:999px;border:1px solid rgba(244,238,228,.3);background:transparent;color:#F4EEE4;font-size:15px}
+.chip.on{background:#FF6A33;border-color:#FF6A33;color:#141826;font-weight:700}
+.warn{color:#FF9B73;margin:10px 0 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:24px}
+.card{background:#1C2133;border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#f2f2f2}
+.body{padding:22px;display:flex;flex-direction:column;gap:14px;flex:1}
+.notes{margin:4px 0 0;font-size:15px;line-height:1.7;color:#D8D1C5}
+.pills{display:flex;flex-wrap:wrap;gap:8px;font-size:13px}.pill{border:1px solid rgba(244,238,228,.25);border-radius:999px;padding:4px 12px}
+.tiers{display:grid;gap:6px;margin-top:auto}.k4{grid-template-columns:repeat(4,minmax(0,1fr))}.k3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.tier{background:#141826;border-radius:12px;padding:10px 4px;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center}
+.tier span{font-size:12px;color:#B9B2A6}.tier b{font-size:20px;font-weight:600}
+.tier.on{background:#FF6A33;color:#141826}.tier.on span{color:#141826;font-weight:600}.tier.on b{font-weight:700}
+.total{font-size:16px;font-weight:600;min-height:24px}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{flex:1 1 130px;min-height:44px;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;font-size:15px;font-weight:700;padding:0 16px}
+.btn.light{background:#F4EEE4;color:#141826}.btn.light:hover{color:#141826;background:#fff}
+.btn.ghost{border:1px solid rgba(244,238,228,.3);font-weight:500;background:transparent;color:#F4EEE4}
+.btn.accent{background:#FF6A33;color:#141826;flex:0 0 auto}
+.box{background:#1C2133;border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:12px}
+.scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:15px}
+th{text-align:start;padding:8px 6px;font-size:13px;color:#B9B2A6;border-bottom:1px solid rgba(244,238,228,.15)}td{padding:10px 6px;border-bottom:1px solid rgba(244,238,228,.08)}
+ul{margin:0;padding-inline-start:20px;display:flex;flex-direction:column;gap:8px;line-height:1.7;color:#D8D1C5}
+dl{margin:0;display:flex;flex-direction:column;gap:10px}dt{font-size:13px;color:#B9B2A6}dd{margin:0;font-weight:600;word-break:break-all}
+.copy{align-self:flex-start;min-height:44px;padding:0 20px;border-radius:12px;border:1px solid rgba(244,238,228,.3);background:transparent;color:#F4EEE4;font-size:15px;font-weight:600}
+body:not([data-mode=kg]) .m-kg,body:not([data-mode=bag]) .m-bag{display:none!important}
+body[data-mode=drip] .crops,body[data-mode=matcha] .crops,body[data-mode=tools] .crops,body:not([data-mode=drip]) .s-drip,body:not([data-mode=matcha]) .s-matcha,body:not([data-mode=tools]) .s-tools{display:none}
+.navbtn{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid rgba(244,238,228,.3);background:transparent;color:#F4EEE4;font-size:15px;font-weight:600}.navbtn:hover{border-color:#FF6A33;color:#FF7A45}
+.tabsnav{gap:8px}a.navbtn{display:inline-flex;align-items:center;text-decoration:none}.navbtn.lang{border-color:#FF6A33;color:#FF7A45}
+dialog{border:0;padding:0;background:transparent;max-width:min(560px,92vw);width:100%}dialog::backdrop{background:rgba(10,12,20,.7)}
+.dlg{background:#1C2133;color:#F4EEE4;border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:14px;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif}
+.dlghead{display:flex;justify-content:space-between;align-items:center;gap:12px}.dlghead h2{font-size:26px}
+.x{width:44px;height:44px;border-radius:12px;border:1px solid rgba(244,238,228,.3);background:transparent;color:#F4EEE4;font-size:24px;line-height:1}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.addrow{display:flex;gap:8px}.addrow input{width:96px;min-height:44px;padding:0 10px;border-radius:12px;border:1px solid rgba(244,238,228,.3);background:#141826;color:#F4EEE4;font-size:17px;text-align:center}
+.add{flex:1;min-height:44px;border:0;border-radius:12px;background:#F4EEE4;color:#141826;font-size:15px;font-weight:700}.add:hover{background:#fff}
+.incart{font-size:14px;color:#FF9B73;font-weight:600;min-height:20px}
+span.chip{display:inline-flex;align-items:center}
+.obar{position:fixed;inset-inline:0;bottom:0;background:#0E111B;border-top:1px solid rgba(255,106,51,.5);z-index:10}
+.obarin{padding-top:12px;padding-bottom:12px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.obtns{display:flex;flex-wrap:wrap;gap:8px}.obtns .btn{flex:0 0 auto}
+.oline{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(244,238,228,.1);font-size:15px}
+.oline button{min-height:36px;padding:0 12px;border-radius:10px;border:1px solid rgba(244,238,228,.3);background:transparent;color:#F4EEE4;font-size:13px}
+.trow{display:flex;justify-content:space-between;padding:4px 0;font-size:15px}.trow.big{font-size:18px;font-weight:700}
+body.hasorder footer{padding-bottom:90px}
+footer{margin-top:64px;border-top:1px solid rgba(244,238,228,.12)}
+footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;color:#B9B2A6}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a href="index.html" style="display:flex;flex-direction:column;line-height:1"><span class="bebas" style="font-size:34px;letter-spacing:3px">ASANTE</span><span class="bebas muted" style="font-size:12px;letter-spacing:4px">BY FARMERS</span></a>
+<nav class="tabsnav"><a class="navbtn lang" href="wholesale.html" lang="ar" hreflang="ar">العربية</a><button class="navbtn" data-dlg="dlg-policy">Order Policy</button><button class="navbtn" data-dlg="dlg-order">How to Order</button><button class="navbtn" data-dlg="dlg-bank">Bank Account</button></nav>
+</div></header>
+<main>
+<section class="wrap" style="padding-top:56px;display:flex;flex-direction:column;gap:14px">
+<span class="bebas" style="font-size:20px;letter-spacing:4px;color:#FF6A33" dir="ltr">WHOLESALE PRICE LIST</span>
+<h1>Wholesale Prices</h1>
+<p class="lead">Asante roastery price list for wholesale and resale customers. Prices are in Saudi riyals, exclude 15% VAT, and are subject to change. Add as many coffees as you like; kilo pricing is based on the total kilos in your order. The cart total includes VAT.</p>
+</section>
+<section id="prices" class="wrap" style="padding-top:28px">
+<div class="ctrl" style="margin:0 0 16px">
+<label for="cname" style="font-size:17px;font-weight:600">Your name or business</label>
+<input id="cname" type="text" autocomplete="organization" placeholder="Type your name" style="width:auto;flex:1 1 240px;max-width:420px;text-align:start;font-size:17px;font-weight:500">
+<span class="muted" style="font-size:14px">Your name appears in the WhatsApp order message.</span>
+</div>
+<div class="tabs" role="tablist" aria-label="List type">
+<button class="tab" role="tab" aria-selected="true" data-mode="kg">Per kilo</button>
+<button class="tab" role="tab" aria-selected="false" data-mode="bag">225 g bags</button>
+<button class="tab" role="tab" aria-selected="false" data-mode="drip">Drip bags</button>
+<button class="tab" role="tab" aria-selected="false" data-mode="matcha">Matcha</button>
+<button class="tab" role="tab" aria-selected="false" data-mode="tools">Tools</button>
+</div>
+<div class="ctrl m-kg">
+<span style="font-size:17px;font-weight:600">Price by your order total:</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px" id="kgchips"><span class="chip" data-q="10">10 kg+</span><span class="chip" data-q="30">30 kg+</span><span class="chip" data-q="50">50 kg+</span><span class="chip" data-q="100">100 kg+</span></div>
+<span class="muted" style="font-size:15px" id="kgsum">Add coffees and quantities from the cards; the price is set automatically.</span>
+</div>
+
+<div class="ctrl m-bag">
+<span style="font-size:17px;font-weight:600">Price by number of bags in your order:</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px" id="bagchips"><span class="chip" data-t="1">50–180 bags: 50 kg price</span><span class="chip" data-t="2">Over 180 bags: 100 kg price</span></div>
+<span class="muted" style="font-size:15px;flex-basis:100%" id="bagnote"></span>
+</div>
+</section>
+<section class="wrap crops" style="padding-top:48px">
+<div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px"><h2>Coffees</h2><span class="muted unit"></span></div>
+<div class="grid"><article class="card" data-key="BrazilMarcelo" data-name="Brazil – Marcelo" data-kg='[91, 83, 78, 70]' data-bag='[32, 22.4, 19.2]'>
+<img src="img/ba43046b.jpg" alt="Marcelo bag" loading="lazy">
+<div class="body">
+<div><span class="muted sm">Brazil</span><h3>Marcelo</h3><p class="notes">Citrus Fruits, Chocolate, Caramel, Nutty</p></div>
+<div class="pills"><span class="pill">Process: Natural</span><span class="pill">Espresso & filter</span></div>
+<div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 kg+</span><b dir="ltr">91</b></div><div class="tier" data-i="1"><span>30 kg+</span><b dir="ltr">83</b></div><div class="tier" data-i="2"><span>50 kg+</span><b dir="ltr">78</b></div><div class="tier" data-i="3"><span>100 kg+</span><b dir="ltr">70</b></div></div>
+<div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>Retail</span><b dir="ltr">32</b></div><div class="tier" data-i="1"><span>50 kg −30%</span><b dir="ltr">22.4</b></div><div class="tier" data-i="2"><span>100 kg −40%</span><b dir="ltr">19.2</b></div></div>
+<div class="addrow m-kg"><label class="sr" for="q-kg-BrazilMarcelo">Quantity in kg</label><input id="q-kg-BrazilMarcelo" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="kg" dir="ltr"><button class="add" data-u="kg">Add to order</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-BrazilMarcelo">Number of bags</label><input id="q-bag-BrazilMarcelo" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="bags" dir="ltr"><button class="add" data-u="bag">Add to order</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="brazil-marcelo.html">Tasting profile</a></div>
+</div></article><article class="card" data-key="EthiopiaMariam" data-name="Ethiopia – Mariam" data-kg='[116, 109, 98, 86]' data-bag='[39, 27.3, 23.4]'>
+<img src="img/3b0a7efe.jpg" alt="Mariam bag" loading="lazy">
+<div class="body">
+<div><span class="muted sm">Ethiopia</span><h3>Mariam</h3><p class="notes">Milk Chocolate, Tropical Fruit, Grapefruit, Peach</p></div>
+<div class="pills"><span class="pill">Process: Natural</span><span class="pill">Espresso & filter</span></div>
+<div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 kg+</span><b dir="ltr">116</b></div><div class="tier" data-i="1"><span>30 kg+</span><b dir="ltr">109</b></div><div class="tier" data-i="2"><span>50 kg+</span><b dir="ltr">98</b></div><div class="tier" data-i="3"><span>100 kg+</span><b dir="ltr">86</b></div></div>
+<div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>Retail</span><b dir="ltr">39</b></div><div class="tier" data-i="1"><span>50 kg −30%</span><b dir="ltr">27.3</b></div><div class="tier" data-i="2"><span>100 kg −40%</span><b dir="ltr">23.4</b></div></div>
+<div class="addrow m-kg"><label class="sr" for="q-kg-EthiopiaMariam">Quantity in kg</label><input id="q-kg-EthiopiaMariam" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="kg" dir="ltr"><button class="add" data-u="kg">Add to order</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-EthiopiaMariam">Number of bags</label><input id="q-bag-EthiopiaMariam" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="bags" dir="ltr"><button class="add" data-u="bag">Add to order</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="ethiopia-mariam.html">Tasting profile</a></div>
+</div></article><article class="card" data-key="ColombiaGavi" data-name="Colombia – Gavi" data-kg='[121, 115, 105, 96]' data-bag='[46, 32.2, 27.6]'>
+<img src="img/4015072a.jpg" alt="Gavi bag" loading="lazy">
+<div class="body">
+<div><span class="muted sm">Colombia</span><h3>Gavi</h3><p class="notes">Fruity, Caramel Sweetness, Orange Peel, Honey</p></div>
+<div class="pills"><span class="pill">Process: Natural</span><span class="pill">Filter</span></div>
+<div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 kg+</span><b dir="ltr">121</b></div><div class="tier" data-i="1"><span>30 kg+</span><b dir="ltr">115</b></div><div class="tier" data-i="2"><span>50 kg+</span><b dir="ltr">105</b></div><div class="tier" data-i="3"><span>100 kg+</span><b dir="ltr">96</b></div></div>
+<div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>Retail</span><b dir="ltr">46</b></div><div class="tier" data-i="1"><span>50 kg −30%</span><b dir="ltr">32.2</b></div><div class="tier" data-i="2"><span>100 kg −40%</span><b dir="ltr">27.6</b></div></div>
+<div class="addrow m-kg"><label class="sr" for="q-kg-ColombiaGavi">Quantity in kg</label><input id="q-kg-ColombiaGavi" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="kg" dir="ltr"><button class="add" data-u="kg">Add to order</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-ColombiaGavi">Number of bags</label><input id="q-bag-ColombiaGavi" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="bags" dir="ltr"><button class="add" data-u="bag">Add to order</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="colombia-gavi.html">Tasting profile</a></div>
+</div></article><article class="card" data-key="EthiopiaChelchele" data-name="Ethiopia – Chelchele" data-kg='[119, 111, 97, 87]' data-bag='[39, 27.3, 23.5]'>
+<img src="img/a2473d39.jpg" alt="Chelchele bag" loading="lazy">
+<div class="body">
+<div><span class="muted sm">Ethiopia</span><h3>Chelchele</h3><p class="notes">Peach, Pineapple, Lychee, Sweetness</p></div>
+<div class="pills"><span class="pill">Process: Natural</span><span class="pill">Espresso & filter</span></div>
+<div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 kg+</span><b dir="ltr">119</b></div><div class="tier" data-i="1"><span>30 kg+</span><b dir="ltr">111</b></div><div class="tier" data-i="2"><span>50 kg+</span><b dir="ltr">97</b></div><div class="tier" data-i="3"><span>100 kg+</span><b dir="ltr">87</b></div></div>
+<div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>Retail</span><b dir="ltr">39</b></div><div class="tier" data-i="1"><span>50 kg −30%</span><b dir="ltr">27.3</b></div><div class="tier" data-i="2"><span>100 kg −40%</span><b dir="ltr">23.5</b></div></div>
+<div class="addrow m-kg"><label class="sr" for="q-kg-EthiopiaChelchele">Quantity in kg</label><input id="q-kg-EthiopiaChelchele" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="kg" dir="ltr"><button class="add" data-u="kg">Add to order</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-EthiopiaChelchele">Number of bags</label><input id="q-bag-EthiopiaChelchele" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="bags" dir="ltr"><button class="add" data-u="bag">Add to order</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="ethiopia-chelchele.html">Tasting profile</a></div>
+</div></article><article class="card" data-key="ShambaBlend" data-name="Shamba – Blend" data-kg='[106, 98, 89, 82]' data-bag='[34, 23.8, 20.4]'>
+<img src="img/31c9d267.jpg" alt="Blend bag" loading="lazy">
+<div class="body">
+<div><span class="muted sm">Blend</span><h3>Blend</h3><p class="notes">Almonds, Caramel, Sugarcane</p></div>
+<div class="pills"><span class="pill">Process: Blend</span><span class="pill">Espresso & filter</span></div>
+<div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 kg+</span><b dir="ltr">106</b></div><div class="tier" data-i="1"><span>30 kg+</span><b dir="ltr">98</b></div><div class="tier" data-i="2"><span>50 kg+</span><b dir="ltr">89</b></div><div class="tier" data-i="3"><span>100 kg+</span><b dir="ltr">82</b></div></div>
+<div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>Retail</span><b dir="ltr">34</b></div><div class="tier" data-i="1"><span>50 kg −30%</span><b dir="ltr">23.8</b></div><div class="tier" data-i="2"><span>100 kg −40%</span><b dir="ltr">20.4</b></div></div>
+<div class="addrow m-kg"><label class="sr" for="q-kg-ShambaBlend">Quantity in kg</label><input id="q-kg-ShambaBlend" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="kg" dir="ltr"><button class="add" data-u="kg">Add to order</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-ShambaBlend">Number of bags</label><input id="q-bag-ShambaBlend" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="bags" dir="ltr"><button class="add" data-u="bag">Add to order</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="shamba-blend.html">Tasting profile</a></div>
+</div></article><article class="card" data-key="UgandaNancy" data-name="Uganda – Nancy" data-kg='[109, 102, 92, 84]' data-bag='[39, 27.3, 23.5]'>
+<img src="img/50f9e9de.jpg" alt="Nancy bag" loading="lazy">
+<div class="body">
+<div><span class="muted sm">Uganda</span><h3>Nancy</h3><p class="notes">Black Tea, Apricot, Mango, Passion Fruit, Chocolate</p></div>
+<div class="pills"><span class="pill">Process: Natural</span><span class="pill">Filter</span></div>
+<div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 kg+</span><b dir="ltr">109</b></div><div class="tier" data-i="1"><span>30 kg+</span><b dir="ltr">102</b></div><div class="tier" data-i="2"><span>50 kg+</span><b dir="ltr">92</b></div><div class="tier" data-i="3"><span>100 kg+</span><b dir="ltr">84</b></div></div>
+<div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>Retail</span><b dir="ltr">39</b></div><div class="tier" data-i="1"><span>50 kg −30%</span><b dir="ltr">27.3</b></div><div class="tier" data-i="2"><span>100 kg −40%</span><b dir="ltr">23.5</b></div></div>
+<div class="addrow m-kg"><label class="sr" for="q-kg-UgandaNancy">Quantity in kg</label><input id="q-kg-UgandaNancy" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="kg" dir="ltr"><button class="add" data-u="kg">Add to order</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-UgandaNancy">Number of bags</label><input id="q-bag-UgandaNancy" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="bags" dir="ltr"><button class="add" data-u="bag">Add to order</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="uganda-nancy.html">Tasting profile</a></div>
+</div></article><article class="card" data-key="IndiaFaridaKhan" data-name="India – Farida Khan" data-kg='[119, 109, 99, 92]' data-bag='[39, 27.3, 23.5]'>
+<img src="img/25d35fc7.jpg" alt="Farida Khan bag" loading="lazy">
+<div class="body">
+<div><span class="muted sm">India</span><h3>Farida Khan</h3><p class="notes">Caramel, Cherry, Honey, Body Fullness</p></div>
+<div class="pills"><span class="pill">Process: Washed</span><span class="pill">Espresso & filter</span></div>
+<div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 kg+</span><b dir="ltr">119</b></div><div class="tier" data-i="1"><span>30 kg+</span><b dir="ltr">109</b></div><div class="tier" data-i="2"><span>50 kg+</span><b dir="ltr">99</b></div><div class="tier" data-i="3"><span>100 kg+</span><b dir="ltr">92</b></div></div>
+<div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>Retail</span><b dir="ltr">39</b></div><div class="tier" data-i="1"><span>50 kg −30%</span><b dir="ltr">27.3</b></div><div class="tier" data-i="2"><span>100 kg −40%</span><b dir="ltr">23.5</b></div></div>
+<div class="addrow m-kg"><label class="sr" for="q-kg-IndiaFaridaKhan">Quantity in kg</label><input id="q-kg-IndiaFaridaKhan" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="kg" dir="ltr"><button class="add" data-u="kg">Add to order</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-IndiaFaridaKhan">Number of bags</label><input id="q-bag-IndiaFaridaKhan" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="bags" dir="ltr"><button class="add" data-u="bag">Add to order</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="india-farida-khan.html">Tasting profile</a></div>
+</div></article><article class="card" data-key="CostaRicaCarlos" data-name="Costa Rica – Carlos" data-kg='[121, 114, 104, 95]' data-bag='[42, 29.4, 25.2]'>
+<img src="img/0a74b700.jpg" alt="Carlos bag" loading="lazy">
+<div class="body">
+<div><span class="muted sm">Costa Rica</span><h3>Carlos</h3><p class="notes">Dark Chocolate, Sweetness, Dried Fruits</p></div>
+<div class="pills"><span class="pill">Process: Honey</span><span class="pill">Filter</span></div>
+<div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 kg+</span><b dir="ltr">121</b></div><div class="tier" data-i="1"><span>30 kg+</span><b dir="ltr">114</b></div><div class="tier" data-i="2"><span>50 kg+</span><b dir="ltr">104</b></div><div class="tier" data-i="3"><span>100 kg+</span><b dir="ltr">95</b></div></div>
+<div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>Retail</span><b dir="ltr">42</b></div><div class="tier" data-i="1"><span>50 kg −30%</span><b dir="ltr">29.4</b></div><div class="tier" data-i="2"><span>100 kg −40%</span><b dir="ltr">25.2</b></div></div>
+<div class="addrow m-kg"><label class="sr" for="q-kg-CostaRicaCarlos">Quantity in kg</label><input id="q-kg-CostaRicaCarlos" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="kg" dir="ltr"><button class="add" data-u="kg">Add to order</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-CostaRicaCarlos">Number of bags</label><input id="q-bag-CostaRicaCarlos" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="bags" dir="ltr"><button class="add" data-u="bag">Add to order</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="costa-rica-carlos.html">Tasting profile</a></div>
+</div></article><article class="card" data-key="ElSalvadorSantaRose" data-name="El Salvador – Santa Rose" data-kg='[121, 115, 105, 96]' data-bag='[42, 29.4, 25.2]'>
+<img src="img/30fbd6dd.jpg" alt="Santa Rose bag" loading="lazy">
+<div class="body">
+<div><span class="muted sm">El Salvador</span><h3>Santa Rose</h3><p class="notes">Raspberry, Grape, Dark Chocolate</p></div>
+<div class="pills"><span class="pill">Process: Natural</span><span class="pill">Espresso & filter</span></div>
+<div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 kg+</span><b dir="ltr">121</b></div><div class="tier" data-i="1"><span>30 kg+</span><b dir="ltr">115</b></div><div class="tier" data-i="2"><span>50 kg+</span><b dir="ltr">105</b></div><div class="tier" data-i="3"><span>100 kg+</span><b dir="ltr">96</b></div></div>
+<div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>Retail</span><b dir="ltr">42</b></div><div class="tier" data-i="1"><span>50 kg −30%</span><b dir="ltr">29.4</b></div><div class="tier" data-i="2"><span>100 kg −40%</span><b dir="ltr">25.2</b></div></div>
+<div class="addrow m-kg"><label class="sr" for="q-kg-ElSalvadorSantaRose">Quantity in kg</label><input id="q-kg-ElSalvadorSantaRose" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="kg" dir="ltr"><button class="add" data-u="kg">Add to order</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-ElSalvadorSantaRose">Number of bags</label><input id="q-bag-ElSalvadorSantaRose" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="bags" dir="ltr"><button class="add" data-u="bag">Add to order</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="el-salvador-santa-rose.html">Tasting profile</a></div>
+</div></article><article class="card" data-key="ColombiaDecaf" data-name="Colombia – Decaf" data-kg='[121, 115, 105, 96]' data-bag='[42, 29.4, 25.2]'>
+<img src="img/2a2d465a.jpg" alt="Decaf bag" loading="lazy">
+<div class="body">
+<div><span class="muted sm">Colombia</span><h3>Decaf</h3><p class="notes">Honey, Orange, Apple, Milk Chocolate</p></div>
+<div class="pills"><span class="pill">Process: Sugarcane decaf</span><span class="pill">Espresso & filter</span></div>
+<div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 kg+</span><b dir="ltr">121</b></div><div class="tier" data-i="1"><span>30 kg+</span><b dir="ltr">115</b></div><div class="tier" data-i="2"><span>50 kg+</span><b dir="ltr">105</b></div><div class="tier" data-i="3"><span>100 kg+</span><b dir="ltr">96</b></div></div>
+<div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>Retail</span><b dir="ltr">42</b></div><div class="tier" data-i="1"><span>50 kg −30%</span><b dir="ltr">29.4</b></div><div class="tier" data-i="2"><span>100 kg −40%</span><b dir="ltr">25.2</b></div></div>
+<div class="addrow m-kg"><label class="sr" for="q-kg-ColombiaDecaf">Quantity in kg</label><input id="q-kg-ColombiaDecaf" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="kg" dir="ltr"><button class="add" data-u="kg">Add to order</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-ColombiaDecaf">Number of bags</label><input id="q-bag-ColombiaDecaf" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="bags" dir="ltr"><button class="add" data-u="bag">Add to order</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="colombia-decaf.html">Tasting profile</a></div>
+</div></article><article class="card" data-key="ColombiaThomas" data-name="Colombia – Thomas" data-kg='[106, 96, 86, 79]' data-bag='[36, 25.2, 21.2]'>
+<img src="img/dc382fe2.jpg" alt="Thomas bag" loading="lazy">
+<div class="body">
+<div><span class="muted sm">Colombia</span><h3>Thomas</h3><p class="notes">Chocolate, Caramel, Cane Sugar, Fruity</p></div>
+<div class="pills"><span class="pill">Process: Washed</span><span class="pill">Filter</span></div>
+<div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 kg+</span><b dir="ltr">106</b></div><div class="tier" data-i="1"><span>30 kg+</span><b dir="ltr">96</b></div><div class="tier" data-i="2"><span>50 kg+</span><b dir="ltr">86</b></div><div class="tier" data-i="3"><span>100 kg+</span><b dir="ltr">79</b></div></div>
+<div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>Retail</span><b dir="ltr">36</b></div><div class="tier" data-i="1"><span>50 kg −30%</span><b dir="ltr">25.2</b></div><div class="tier" data-i="2"><span>100 kg −40%</span><b dir="ltr">21.2</b></div></div>
+<div class="addrow m-kg"><label class="sr" for="q-kg-ColombiaThomas">Quantity in kg</label><input id="q-kg-ColombiaThomas" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="kg" dir="ltr"><button class="add" data-u="kg">Add to order</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-ColombiaThomas">Number of bags</label><input id="q-bag-ColombiaThomas" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="bags" dir="ltr"><button class="add" data-u="bag">Add to order</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="colombia-thomas.html">Tasting profile</a></div>
+</div></article><article class="card" data-key="IndonesiaSumatra" data-name="Indonesia – Sumatra" data-kg='[121, 114, 104, 95]' data-bag='[39, 27.3, 23.5]'>
+<img src="img/0bb76986.jpg" alt="Sumatra bag" loading="lazy">
+<div class="body">
+<div><span class="muted sm">Indonesia</span><h3>Sumatra</h3><p class="notes">Grapes, Apple, Dried Fruits, Brown Sugar</p></div>
+<div class="pills"><span class="pill">Process: Natural</span><span class="pill">Espresso & filter</span></div>
+<div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 kg+</span><b dir="ltr">121</b></div><div class="tier" data-i="1"><span>30 kg+</span><b dir="ltr">114</b></div><div class="tier" data-i="2"><span>50 kg+</span><b dir="ltr">104</b></div><div class="tier" data-i="3"><span>100 kg+</span><b dir="ltr">95</b></div></div>
+<div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>Retail</span><b dir="ltr">39</b></div><div class="tier" data-i="1"><span>50 kg −30%</span><b dir="ltr">27.3</b></div><div class="tier" data-i="2"><span>100 kg −40%</span><b dir="ltr">23.5</b></div></div>
+<div class="addrow m-kg"><label class="sr" for="q-kg-IndonesiaSumatra">Quantity in kg</label><input id="q-kg-IndonesiaSumatra" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="kg" dir="ltr"><button class="add" data-u="kg">Add to order</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-IndonesiaSumatra">Number of bags</label><input id="q-bag-IndonesiaSumatra" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="bags" dir="ltr"><button class="add" data-u="bag">Add to order</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="indonesia-sumatra.html">Tasting profile</a></div>
+</div></article><article class="card" data-key="Main" data-name="Ethiopia – Gedeb" data-kg='[121, 115, 105, 96]' data-bag='[42, 29.4, 25.2]'>
+<img src="img/486196fb.jpg" alt="Gedeb bag" loading="lazy">
+<div class="body">
+<div><span class="muted sm">Ethiopia</span><h3>Gedeb</h3><p class="notes">Black Tea, Tangerine, Blueberry</p></div>
+<div class="pills"><span class="pill">Process: Natural</span><span class="pill">Espresso & filter</span></div>
+<div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 kg+</span><b dir="ltr">121</b></div><div class="tier" data-i="1"><span>30 kg+</span><b dir="ltr">115</b></div><div class="tier" data-i="2"><span>50 kg+</span><b dir="ltr">105</b></div><div class="tier" data-i="3"><span>100 kg+</span><b dir="ltr">96</b></div></div>
+<div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>Retail</span><b dir="ltr">42</b></div><div class="tier" data-i="1"><span>50 kg −30%</span><b dir="ltr">29.4</b></div><div class="tier" data-i="2"><span>100 kg −40%</span><b dir="ltr">25.2</b></div></div>
+<div class="addrow m-kg"><label class="sr" for="q-kg-Main">Quantity in kg</label><input id="q-kg-Main" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="kg" dir="ltr"><button class="add" data-u="kg">Add to order</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-Main">Number of bags</label><input id="q-bag-Main" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="bags" dir="ltr"><button class="add" data-u="bag">Add to order</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="ethiopia-gedeb.html">Tasting profile</a></div>
+</div></article></div>
+</section>
+<section class="wrap crops" style="padding-top:48px">
+<div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px"><h2>Premium Coffees</h2><span class="muted unit"></span></div>
+<div class="grid"><article class="card" data-key="YemenSaddam" data-name="Yemen – Saddam" data-kg='[204, 194, 185, 175]' data-bag='[59, 44.25, 41.3]'>
+<img src="img/f6ed9736.jpg" alt="Saddam bag" loading="lazy">
+<div class="body">
+<div><span class="muted sm">Yemen</span><h3>Saddam</h3><p class="notes">Caramel, Jasmine, Cinnamon, Raisins</p></div>
+<div class="pills"><span class="pill">Process: Natural</span><span class="pill">Espresso & filter</span></div>
+<div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 kg+</span><b dir="ltr">204</b></div><div class="tier" data-i="1"><span>30 kg+</span><b dir="ltr">194</b></div><div class="tier" data-i="2"><span>50 kg+</span><b dir="ltr">185</b></div><div class="tier" data-i="3"><span>100 kg+</span><b dir="ltr">175</b></div></div>
+<div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>Retail</span><b dir="ltr">59</b></div><div class="tier" data-i="1"><span>50 kg −25%</span><b dir="ltr">44.25</b></div><div class="tier" data-i="2"><span>100 kg −30%</span><b dir="ltr">41.3</b></div></div>
+<div class="addrow m-kg"><label class="sr" for="q-kg-YemenSaddam">Quantity in kg</label><input id="q-kg-YemenSaddam" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="kg" dir="ltr"><button class="add" data-u="kg">Add to order</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-YemenSaddam">Number of bags</label><input id="q-bag-YemenSaddam" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="bags" dir="ltr"><button class="add" data-u="bag">Add to order</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="yemen-saddam.html">Tasting profile</a></div>
+</div></article><article class="card" data-key="EthiopiaWine" data-name="Ethiopia – Wine" data-kg='[202, 192, 183, 173]' data-bag='[59, 44.25, 41.3]'>
+<img src="img/1b317981.jpg" alt="Wine bag" loading="lazy">
+<div class="body">
+<div><span class="muted sm">Ethiopia</span><h3>Wine</h3><p class="notes">Grapes, Chocolate, Pineapple, Orange</p></div>
+<div class="pills"><span class="pill">Process: Fermented</span><span class="pill">Espresso & filter</span></div>
+<div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 kg+</span><b dir="ltr">202</b></div><div class="tier" data-i="1"><span>30 kg+</span><b dir="ltr">192</b></div><div class="tier" data-i="2"><span>50 kg+</span><b dir="ltr">183</b></div><div class="tier" data-i="3"><span>100 kg+</span><b dir="ltr">173</b></div></div>
+<div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>Retail</span><b dir="ltr">59</b></div><div class="tier" data-i="1"><span>50 kg −25%</span><b dir="ltr">44.25</b></div><div class="tier" data-i="2"><span>100 kg −30%</span><b dir="ltr">41.3</b></div></div>
+<div class="addrow m-kg"><label class="sr" for="q-kg-EthiopiaWine">Quantity in kg</label><input id="q-kg-EthiopiaWine" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="kg" dir="ltr"><button class="add" data-u="kg">Add to order</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-EthiopiaWine">Number of bags</label><input id="q-bag-EthiopiaWine" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="bags" dir="ltr"><button class="add" data-u="bag">Add to order</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="ethiopia-wine.html">Tasting profile</a></div>
+</div></article><article class="card" data-key="BrazilMaltesers" data-name="Brazil – Maltesers" data-kg='[179, 159, 143, 139]' data-bag='[52, 39, 36.4]'>
+<img src="img/dff22292.jpg" alt="Maltesers bag" loading="lazy">
+<div class="body">
+<div><span class="muted sm">Brazil</span><h3>Maltesers</h3><p class="notes">Hazelnut, Coconut, Chocolate</p></div>
+<div class="pills"><span class="pill">Process: Chocolate infusion</span><span class="pill">Espresso & filter</span></div>
+<div class="tiers k4 m-kg"><div class="tier" data-i="0"><span>10 kg+</span><b dir="ltr">179</b></div><div class="tier" data-i="1"><span>30 kg+</span><b dir="ltr">159</b></div><div class="tier" data-i="2"><span>50 kg+</span><b dir="ltr">143</b></div><div class="tier" data-i="3"><span>100 kg+</span><b dir="ltr">139</b></div></div>
+<div class="tiers k3 m-bag"><div class="tier" data-i="0"><span>Retail</span><b dir="ltr">52</b></div><div class="tier" data-i="1"><span>50 kg −25%</span><b dir="ltr">39</b></div><div class="tier" data-i="2"><span>100 kg −30%</span><b dir="ltr">36.4</b></div></div>
+<div class="addrow m-kg"><label class="sr" for="q-kg-BrazilMaltesers">Quantity in kg</label><input id="q-kg-BrazilMaltesers" class="q" data-u="kg" type="number" min="1" step="1" inputmode="numeric" placeholder="kg" dir="ltr"><button class="add" data-u="kg">Add to order</button></div>
+<div class="addrow m-bag"><label class="sr" for="q-bag-BrazilMaltesers">Number of bags</label><input id="q-bag-BrazilMaltesers" class="q" data-u="bag" type="number" min="1" step="1" inputmode="numeric" placeholder="bags" dir="ltr"><button class="add" data-u="bag">Add to order</button></div>
+<div class="incart" aria-live="polite"></div>
+<div class="btns"><a class="btn ghost" href="brazil-maltesers.html">Tasting profile</a></div>
+</div></article></div>
+</section>
+<section class="wrap s-matcha" style="padding-top:32px">
+<div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px"><h2>Matcha</h2><span class="muted">Price per tin · ordered by the carton (10 tins)</span></div>
+<div class="grid"><article class="card" data-ex="matcha"><img src="img/matcha.jpg" alt="Matcha – Japan" loading="lazy" style="object-fit:cover;background:#fff">
+<div class="body"><div><h3>Matcha – Japan</h3><span class="muted sm">Premium organic ceremonial · 30 g tin · 10 tins per carton</span></div>
+<div class="tiers k3"><div class="tier"><span>Retail</span><b dir="ltr">86</b></div><div class="tier"><span>1 carton −30%</span><b dir="ltr">60.2</b></div><div class="tier"><span>2+ cartons −40%</span><b dir="ltr">51.6</b></div></div><div class="addrow"><label class="sr" for="q-ex-matcha">Quantity (cartons)</label><input id="q-ex-matcha" class="q" type="number" min="1" step="1" inputmode="numeric" placeholder="cartons" dir="ltr"><button class="add">Add to order</button></div><div class="incart" aria-live="polite"></div></div></article></div>
+</section>
+<section class="wrap s-drip" style="padding-top:32px">
+<div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px"><h2>Drip Coffee Bags</h2><span class="muted">Price per box · minimum 40 mixed boxes · over 60 boxes at the lower price</span></div>
+<div class="grid"><article class="card" data-ex="drip-mariam"><img src="img/drip-mariam.jpg" alt="Ethiopia – Mariam" loading="lazy" style="object-fit:contain;background:#fff">
+<div class="body"><div><h3>Ethiopia – Mariam</h3><span class="muted sm">Box of 5 × 12 g drip bags</span></div>
+<div class="tiers k3"><div class="tier"><span>Retail</span><b dir="ltr">26</b></div><div class="tier"><span>40–60 boxes −30%</span><b dir="ltr">17.5</b></div><div class="tier"><span>Over 60 −45%</span><b dir="ltr">14.3</b></div></div><div class="addrow"><label class="sr" for="q-ex-drip-mariam">Quantity (boxes)</label><input id="q-ex-drip-mariam" class="q" type="number" min="1" step="1" inputmode="numeric" placeholder="boxes" dir="ltr"><button class="add">Add to order</button></div><div class="incart" aria-live="polite"></div></div></article><article class="card" data-ex="drip-thomas"><img src="img/drip-thomas.jpg" alt="Colombia – Thomas" loading="lazy" style="object-fit:contain;background:#fff">
+<div class="body"><div><h3>Colombia – Thomas</h3><span class="muted sm">Box of 5 × 12 g drip bags</span></div>
+<div class="tiers k3"><div class="tier"><span>Retail</span><b dir="ltr">26</b></div><div class="tier"><span>40–60 boxes −30%</span><b dir="ltr">17.5</b></div><div class="tier"><span>Over 60 −45%</span><b dir="ltr">14.3</b></div></div><div class="addrow"><label class="sr" for="q-ex-drip-thomas">Quantity (boxes)</label><input id="q-ex-drip-thomas" class="q" type="number" min="1" step="1" inputmode="numeric" placeholder="boxes" dir="ltr"><button class="add">Add to order</button></div><div class="incart" aria-live="polite"></div></div></article><article class="card" data-ex="drip-santarose"><img src="img/drip-santarose.jpg" alt="El Salvador – Santa Rose" loading="lazy" style="object-fit:contain;background:#fff">
+<div class="body"><div><h3>El Salvador – Santa Rose</h3><span class="muted sm">Box of 5 × 12 g drip bags</span></div>
+<div class="tiers k3"><div class="tier"><span>Retail</span><b dir="ltr">26</b></div><div class="tier"><span>40–60 boxes −30%</span><b dir="ltr">17.5</b></div><div class="tier"><span>Over 60 −45%</span><b dir="ltr">14.3</b></div></div><div class="addrow"><label class="sr" for="q-ex-drip-santarose">Quantity (boxes)</label><input id="q-ex-drip-santarose" class="q" type="number" min="1" step="1" inputmode="numeric" placeholder="boxes" dir="ltr"><button class="add">Add to order</button></div><div class="incart" aria-live="polite"></div></div></article><article class="card" data-ex="drip-nancy"><img src="img/drip-nancy.jpg" alt="Uganda – Nancy" loading="lazy" style="object-fit:contain;background:#fff">
+<div class="body"><div><h3>Uganda – Nancy</h3><span class="muted sm">Box of 5 × 12 g drip bags</span></div>
+<div class="tiers k3"><div class="tier"><span>Retail</span><b dir="ltr">26</b></div><div class="tier"><span>40–60 boxes −30%</span><b dir="ltr">17.5</b></div><div class="tier"><span>Over 60 −45%</span><b dir="ltr">14.3</b></div></div><div class="addrow"><label class="sr" for="q-ex-drip-nancy">Quantity (boxes)</label><input id="q-ex-drip-nancy" class="q" type="number" min="1" step="1" inputmode="numeric" placeholder="boxes" dir="ltr"><button class="add">Add to order</button></div><div class="incart" aria-live="polite"></div></div></article></div>
+</section>
+<section class="wrap s-tools" style="padding-top:32px">
+<div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px"><h2>Coffee Tools</h2><span class="muted">Funnel and stand: minimum 20 pcs · Filters: minimum 60 packs</span></div>
+<div class="grid"><article class="card" data-ex="funnel"><img src="img/funnel.jpg" alt="Chemex-style funnel" loading="lazy" style="object-fit:contain;background:#fff">
+<div class="body"><div><h3>Chemex-style funnel</h3><span class="muted sm">Per piece · minimum 20 pcs</span></div>
+<div class="tiers k3"><div class="tier"><span>Retail</span><b dir="ltr">39</b></div><div class="tier"><span>20–39 pcs −30%</span><b dir="ltr">27.3</b></div><div class="tier"><span>40+ pcs −40%</span><b dir="ltr">23.4</b></div></div><div class="addrow"><label class="sr" for="q-ex-funnel">Quantity (pcs)</label><input id="q-ex-funnel" class="q" type="number" min="1" step="1" inputmode="numeric" placeholder="pcs" dir="ltr"><button class="add">Add to order</button></div><div class="incart" aria-live="polite"></div></div></article><article class="card" data-ex="stand"><img src="img/stand.jpg" alt="Funnel stand" loading="lazy" style="object-fit:contain;background:#fff">
+<div class="body"><div><h3>Funnel stand</h3><span class="muted sm">Per piece · minimum 20 pcs</span></div>
+<div class="tiers k3"><div class="tier"><span>Retail</span><b dir="ltr">39</b></div><div class="tier"><span>20–39 pcs −30%</span><b dir="ltr">27.3</b></div><div class="tier"><span>40+ pcs −40%</span><b dir="ltr">23.4</b></div></div><div class="addrow"><label class="sr" for="q-ex-stand">Quantity (pcs)</label><input id="q-ex-stand" class="q" type="number" min="1" step="1" inputmode="numeric" placeholder="pcs" dir="ltr"><button class="add">Add to order</button></div><div class="incart" aria-live="polite"></div></div></article><article class="card" data-ex="filters"><img src="img/filters.jpg" alt="Paper Filters Size 02" loading="lazy" style="object-fit:contain;background:#fff">
+<div class="body"><div><h3>Paper Filters Size 02</h3><span class="muted sm">100 filters per pack · minimum 60 packs · 120 packs per carton</span></div>
+<div class="tiers k3"><div class="tier"><span>Retail</span><b dir="ltr">15</b></div><div class="tier"><span>60–119 packs −30%</span><b dir="ltr">10.5</b></div><div class="tier"><span>120+ packs −40%</span><b dir="ltr">9</b></div></div><div class="addrow"><label class="sr" for="q-ex-filters">Quantity (packs)</label><input id="q-ex-filters" class="q" type="number" min="1" step="1" inputmode="numeric" placeholder="packs" dir="ltr"><button class="add">Add to order</button></div><div class="incart" aria-live="polite"></div></div></article></div>
+</section>
+</main>
+<dialog id="dlg-policy" aria-labelledby="t-policy"><div class="dlg"><div class="dlghead"><h2 id="t-policy">Order Policy</h2><button class="x" aria-label="Close">×</button></div><ul>
+<li>Listed prices are not fixed and may change.</li><li>All prices exclude VAT.</li><li>Orders are confirmed once a bank transfer is sent quoting the invoice number.</li><li>Orders are prepared and shipped within 1–3 working days.</li><li>You will receive a tracking number; following up on the shipment is the customer’s responsibility.</li><li>Free shipping on wholesale orders over 100 kg.</li></ul></div></dialog>
+<dialog id="dlg-order" aria-labelledby="t-order"><div class="dlg"><div class="dlghead"><h2 id="t-order">How to Order</h2><button class="x" aria-label="Close">×</button></div><ul>
+<li>Orders are received via WhatsApp: <span dir="ltr">+966537809377</span></li><li>Working hours: 10 am to 10 pm, every day except Friday.</li><li>No shipping on Fridays.</li></ul>
+<a class="btn accent" href="https://wa.me/966537809377" target="_blank" rel="noopener" style="align-self:flex-start"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>Contact on WhatsApp</a></div></dialog>
+<dialog id="dlg-bank" aria-labelledby="t-bank"><div class="dlg"><div class="dlghead"><h2 id="t-bank">Bank Account</h2><button class="x" aria-label="Close">×</button></div><dl>
+<div><dt>Beneficiary</dt><dd>شركة نكهة البن المحدودة</dd></div><div><dt>Account number</dt><dd dir="ltr">68203082251002</dd></div><div><dt>IBAN</dt><dd dir="ltr">SA8405000068203082251002</dd></div></dl>
+<button class="copy" id="copy">Copy IBAN</button></div></dialog>
+<div class="obar" id="obar" hidden><div class="wrap obarin">
+<div><b id="ocount"></b><span class="muted sm" id="osub" style="display:block"></span></div>
+<div class="obtns"><button class="btn ghost" id="oview">View order</button><a class="btn accent" id="osend" href="#" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>Send order on WhatsApp</a></div>
+</div></div>
+<dialog id="dlg-order-list" aria-labelledby="t-ol"><div class="dlg"><div class="dlghead"><h2 id="t-ol">Your order</h2><button class="x" aria-label="Close">×</button></div>
+<div id="olist"></div><div id="ototals"></div><p class="warn" id="owarn" hidden></p>
+<div class="btns"><button class="btn ghost" id="oclear">Clear order</button><a class="btn accent" id="osend2" href="#" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/></svg>Send order on WhatsApp</a></div></div></dialog>
+<footer><div class="wrap">
+<span class="bebas" style="font-size:24px;letter-spacing:3px;color:#F4EEE4" dir="ltr">ASANTE BY FARMERS</span>
+<div style="display:flex;flex-wrap:wrap;gap:18px"><a href="https://asante-store.com/" target="_blank" rel="noopener">asante-store.com</a><a href="https://linktr.ee/asante_coffee" target="_blank" rel="noopener" dir="ltr">@asante_coffee</a><span dir="ltr">+966537809377</span></div>
+</div></footer>
+<script>
+(function(){
+var WA='https://wa.me/966537809377?text=',mode='kg',bagT=1,cname='',cart={};
+var nameEl=document.getElementById('cname');
+try{cname=localStorage.getItem('asanteName')||'';nameEl.value=cname;cart=JSON.parse(localStorage.getItem('asanteCart')||'{}')||{}}catch(e){cart={}}
+function save(){try{localStorage.setItem('asanteCart',JSON.stringify(cart))}catch(e){}}
+nameEl.addEventListener('input',function(){cname=nameEl.value.trim();try{localStorage.setItem('asanteName',cname)}catch(e){};render()});
+function fmt(n){return Number(n).toLocaleString('en-US',{maximumFractionDigits:2})}
+function r2(n){return Math.round(n*100)/100}
+function tierOf(q){return q>=100?3:q>=50?2:q>=30?1:q>=10?0:-1}
+var BAGL=['Resale price','50 kg price','100 kg price'];
+var EX={matcha:{name:'Matcha – Japan (30 g tin)',per:10,prices:[60.2,51.6]}};
+var PCS={funnel:'Chemex-style funnel',stand:'Funnel stand'};
+function pw(n){return n===1?'1 pc':n+' pcs'}
+var DRIP={'drip-mariam':'Ethiopia – Mariam','drip-thomas':'Colombia – Thomas','drip-santarose':'El Salvador – Santa Rose','drip-nancy':'Uganda – Nancy'};
+function bw(n){return n===1?'1 box':n+' boxes'}
+function cw(n){return n===1?'1 carton':n+' cartons'}
+function tw(n){return n===1?'1 pack':n+' packs'}
+var cards={};document.querySelectorAll('.card[data-key]').forEach(function(c){cards[c.dataset.key]=c});
+function totals(){
+  var kgTotal=0,bagTotal=0,lines=[],sub=0;
+  Object.keys(cart).forEach(function(k){if(k.indexOf('ex:')===0)return;var c=cards[k];if(!c){delete cart[k];return};kgTotal+=(cart[k].kg||0);bagTotal+=(cart[k].bag||0)});
+  var bagAuto=bagTotal>180;
+  var t=tierOf(kgTotal),tp=t<0?0:t;
+  Object.keys(cart).forEach(function(k){
+    if(k.indexOf('ex:')===0)return;
+    var c=cards[k],it=cart[k],kg=JSON.parse(c.dataset.kg),bag=JSON.parse(c.dataset.bag),name=c.dataset.name;
+    if(it.kg){var p=kg[tp],v=r2(it.kg*p);sub+=v;lines.push({k:k,u:'kg',txt:name+': '+it.kg+' kg × '+fmt(p)+' = '+fmt(v)+' SAR'})}
+    if(it.bag){var bt=bagAuto?2:1,pb=bag[bt],vb=r2(it.bag*pb);sub+=vb;lines.push({k:k,u:'bag',txt:name+': '+it.bag+' × 225 g bags × '+fmt(pb)+' ('+BAGL[bt]+') = '+fmt(vb)+' SAR'})}
+  });
+  Object.keys(EX).forEach(function(x){var n=(cart['ex:'+x]||{}).c;if(!n)return;var e=EX[x],p=e.prices[n>=2?1:0],v=r2(n*e.per*p);sub+=v;lines.push({k:'ex:'+x,u:'c',txt:e.name+': '+cw(n)+' ('+(n*e.per)+' tins) × '+fmt(p)+' = '+fmt(v)+' SAR'})});
+  var lowPcs=[];Object.keys(PCS).forEach(function(x){var n=(cart['ex:'+x]||{}).c;if(!n)return;if(n<20)lowPcs.push(PCS[x]+' ('+n+')');var p=n>=40?23.4:27.3,v=r2(n*p);sub+=v;lines.push({k:'ex:'+x,u:'c',txt:PCS[x]+': '+pw(n)+' × '+fmt(p)+' = '+fmt(v)+' SAR'})});
+  var fn=(cart['ex:filters']||{}).c;if(fn){var fp=fn>=120?9:10.5,fv=r2(fn*fp);sub+=fv;lines.push({k:'ex:filters',u:'c',txt:'Paper filters size 02: '+tw(fn)+' × '+fmt(fp)+' = '+fmt(fv)+' SAR'})}
+  var dripTotal=0;Object.keys(DRIP).forEach(function(x){dripTotal+=((cart['ex:'+x]||{}).c||0)});
+  var dp=dripTotal>60?14.3:17.5;Object.keys(DRIP).forEach(function(x){var n=(cart['ex:'+x]||{}).c;if(!n)return;var v=r2(n*dp);sub+=v;lines.push({k:'ex:'+x,u:'c',txt:'Drip bags '+DRIP[x]+': '+bw(n)+' × '+fmt(dp)+' = '+fmt(v)+' SAR'})});
+  sub=r2(sub);var vat=r2(sub*0.15);
+  return {lowFil:!!fn&&fn<60,filN:fn||0,lowPcs:lowPcs,dripTotal:dripTotal,kgTotal:kgTotal,bagTotal:bagTotal,bagAuto:bagAuto,tier:t,lines:lines,sub:sub,vat:vat,tot:r2(sub+vat)};
+}
+function waLink(T){
+  var NL=String.fromCharCode(10);var m=(cname?('Hello, this is '+cname+'.'):'Hello,')+NL+'I would like to order:'+NL;
+  T.lines.forEach(function(l){m+='• '+l.txt+''+NL});
+  if(T.kgTotal)m+='Total kilos: '+T.kgTotal+' kg'+NL;if(T.bagTotal)m+='Total bags: '+T.bagTotal+' bags'+NL;if(T.dripTotal)m+='Total drip boxes: '+T.dripTotal+' boxes'+NL;
+  m+='Subtotal: '+fmt(T.sub)+' SAR'+NL+'VAT 15%: '+fmt(T.vat)+' SAR'+NL+'Total incl. VAT: '+fmt(T.tot)+' SAR';
+  return WA+encodeURIComponent(m);
+}
+function render(){
+  document.body.dataset.mode=mode;
+  document.querySelectorAll('.tab').forEach(function(b){b.setAttribute('aria-selected',b.dataset.mode===mode?'true':'false')});
+  document.querySelectorAll('.unit').forEach(function(u){u.textContent=mode==='kg'?'Price per 1 kg':'Price per 225 g bag'});
+  var T=totals(),t=T.tier,hl=T.kgTotal?t:-1;
+  document.querySelectorAll('#kgchips .chip').forEach(function(c,i){c.classList.toggle('on',i===hl)});
+  document.getElementById('kgsum').textContent=T.kgTotal?('Total kilos in your order: '+T.kgTotal+' kg'+(t<0?' (minimum 10 kg)':'')):'Add coffees and quantities from the cards; the price is set automatically.';
+  var bsel=T.bagTotal>=50?(T.bagAuto?2:1):-1;document.querySelectorAll('#bagchips .chip').forEach(function(c){c.classList.toggle('on',Number(c.dataset.t)===bsel)});
+  document.getElementById('bagnote').textContent='Minimum 50 bags. The official resale price is for reference only.'+(T.bagTotal?(' · in your order now: '+T.bagTotal+' bags'+(T.bagTotal<50?' (below minimum)':'')):'');
+  Object.keys(cards).forEach(function(k){
+    var card=cards[k],it=cart[k]||{};
+    card.querySelectorAll('.k4 .tier').forEach(function(el,i){el.classList.toggle('on',i===hl)});
+    card.querySelectorAll('.k3 .tier').forEach(function(el,i){el.classList.toggle('on',i===(bsel<0?1:bsel))});
+    var parts=[];if(it.kg)parts.push(it.kg+' kg');if(it.bag)parts.push(it.bag+' bags');
+    card.querySelector('.incart').textContent=parts.length?('In your order: '+parts.join(' + ')):'';
+  });
+  document.querySelectorAll('.card[data-ex]').forEach(function(card){var x=card.dataset.ex,n=(cart['ex:'+x]||{}).c||0;if(x==='filters'){card.querySelectorAll('.tier').forEach(function(el,i){el.classList.toggle('on',n>0&&i===(n>=120?2:1))});card.querySelector('.incart').textContent=n?('In your order: '+tw(n)+(n<60?' (minimum 60 packs)':'')):'';return};if(PCS[x]){card.querySelectorAll('.tier').forEach(function(el,i){el.classList.toggle('on',n>0&&i===(n>=40?2:1))});card.querySelector('.incart').textContent=n?('In your order: '+pw(n)+(n<20?' (minimum 20 pcs)':'')):'';return};if(DRIP[x]){var dt=T.dripTotal;card.querySelectorAll('.tier').forEach(function(el,i){el.classList.toggle('on',dt>0&&i===(dt>60?2:1))});card.querySelector('.incart').textContent=n?('In your order: '+bw(n)):'';return};card.querySelectorAll('.tier').forEach(function(el,i){el.classList.toggle('on',n>0&&i===(n>=2?2:1))});card.querySelector('.incart').textContent=n?('In your order: '+cw(n)+' ('+(n*EX[x].per)+' tins)'):''});
+  var n=T.lines.length,bar=document.getElementById('obar');
+  bar.hidden=!n;document.body.classList.toggle('hasorder',!!n);
+  document.getElementById('ocount').textContent=(n===1?'1 item in order':n===2?'2 items in order':n+' items in order')+' · Total incl. VAT: '+fmt(T.tot)+' SAR';
+  document.getElementById('osub').textContent=[T.kgTotal?('Total kilos: '+T.kgTotal+' kg'):'',T.bagTotal?('Total bags: '+T.bagTotal+' bags'):'',T.dripTotal?('Drip boxes: '+T.dripTotal):''].filter(Boolean).join(' · ');
+  var lowKg=T.kgTotal>0&&T.kgTotal<10,lowBag=T.bagTotal>0&&T.bagTotal<50,lowDrip=T.dripTotal>0&&T.dripTotal<40,lowP=T.lowPcs.length>0,low=lowKg||lowBag||lowDrip||lowP||T.lowFil,link=low?'#':waLink(T);
+  ['osend','osend2'].forEach(function(id){var a=document.getElementById(id);a.href=link;a.setAttribute('aria-disabled',low?'true':'false');a.style.opacity=low?'.5':'1'});
+  var w=document.getElementById('owarn');w.hidden=!low;w.textContent=[lowKg?('Minimum kilo order is 10 kg in total. Your total now: '+T.kgTotal+' kg.'):'',lowBag?('Minimum bag order is 50 bags. Your total now: '+T.bagTotal+' bags.'):'',lowDrip?('Minimum drip order is 40 mixed boxes. Your total now: '+T.dripTotal+' boxes.'):'',lowP?('Minimum 20 pcs per item for funnel and stand: '+T.lowPcs.join(', ')+'.'):'',T.lowFil?('Minimum 60 filter packs. In your order now: '+T.filN+'.'):''].filter(Boolean).join(' ');
+  var ol=document.getElementById('olist');ol.innerHTML='';
+  T.lines.forEach(function(l){var d=document.createElement('div');d.className='oline';var sp=document.createElement('span');sp.textContent=l.txt;var b=document.createElement('button');b.textContent='Remove';b.addEventListener('click',function(){delete cart[l.k][l.u];if(l.u==='bag')delete cart[l.k].bt;if(!cart[l.k].kg&&!cart[l.k].bag&&!cart[l.k].c)delete cart[l.k];save();render()});d.appendChild(sp);d.appendChild(b);ol.appendChild(d)});
+  document.getElementById('ototals').innerHTML='<div class="trow"><span>Subtotal</span><span>'+fmt(T.sub)+' SAR</span></div><div class="trow"><span>VAT 15%</span><span>'+fmt(T.vat)+' SAR</span></div><div class="trow big"><span>Total incl. VAT</span><span>'+fmt(T.tot)+' SAR</span></div>';
+}
+document.querySelectorAll('.card[data-key]').forEach(function(card){
+  card.querySelectorAll('.add').forEach(function(btn){btn.addEventListener('click',function(){
+    var u=btn.dataset.u,inp=card.querySelector('.q[data-u='+u+']'),q=Math.floor(Number(inp.value)||0);
+    if(q<=0){inp.focus();return}
+    var k=card.dataset.key;cart[k]=cart[k]||{};cart[k][u]=q;if(u==='bag')cart[k].bt=bagT;inp.value='';save();render();
+  })});
+});
+document.querySelectorAll('.card[data-ex]').forEach(function(card){card.querySelector('.add').addEventListener('click',function(){var inp=card.querySelector('.q'),q=Math.floor(Number(inp.value)||0);if(q<=0){inp.focus();return};cart['ex:'+card.dataset.ex]={c:q};inp.value='';save();render()})});
+document.querySelectorAll('.tab').forEach(function(b){b.addEventListener('click',function(){mode=b.dataset.mode;render()})});
+['osend','osend2'].forEach(function(id){document.getElementById(id).addEventListener('click',function(e){if(this.getAttribute('aria-disabled')==='true'){e.preventDefault();var d=document.getElementById('dlg-order-list');if(!d.open)d.showModal()}})});
+document.getElementById('oview').addEventListener('click',function(){document.getElementById('dlg-order-list').showModal()});
+document.getElementById('oclear').addEventListener('click',function(){cart={};save();render();document.getElementById('dlg-order-list').close()});
+document.querySelectorAll('.navbtn').forEach(function(b){b.addEventListener('click',function(){var d=document.getElementById(b.dataset.dlg);if(d.showModal)d.showModal();else d.setAttribute('open','')})});
+document.querySelectorAll('dialog').forEach(function(d){d.querySelector('.x').addEventListener('click',function(){d.close()});d.addEventListener('click',function(e){if(e.target===d)d.close()})});
+document.getElementById('copy').addEventListener('click',function(){var b=this;try{navigator.clipboard.writeText('SA8405000068203082251002').then(function(){b.textContent='IBAN copied'})}catch(e){}});
+render();
+})();
+</script>
+</body>
+</html>

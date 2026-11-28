@@ -53,7 +53,7 @@ dl{margin:0;display:flex;flex-direction:column;gap:10px}dt{font-size:13px;color:
 body:not([data-mode=kg]) .m-kg,body:not([data-mode=bag]) .m-bag{display:none!important}
 body[data-mode=drip] .crops,body[data-mode=matcha] .crops,body[data-mode=tools] .crops,body:not([data-mode=drip]) .s-drip,body:not([data-mode=matcha]) .s-matcha,body:not([data-mode=tools]) .s-tools{display:none}
 .navbtn{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid rgba(244,238,228,.3);background:transparent;color:#F4EEE4;font-size:15px;font-weight:600}.navbtn:hover{border-color:#FF6A33;color:#FF7A45}
-.tabsnav{gap:8px}
+.tabsnav{gap:8px}a.navbtn{display:inline-flex;align-items:center;text-decoration:none}.navbtn.lang{border-color:#FF6A33;color:#FF7A45}
 dialog{border:0;padding:0;background:transparent;max-width:min(560px,92vw);width:100%}dialog::backdrop{background:rgba(10,12,20,.7)}
 .dlg{background:#1C2133;color:#F4EEE4;border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:14px;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif}
 .dlghead{display:flex;justify-content:space-between;align-items:center;gap:12px}.dlghead h2{font-size:26px}
@@ -77,7 +77,7 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ju
 <body>
 <header><div class="wrap">
 <a href="index.html" style="display:flex;flex-direction:column;line-height:1"><span class="bebas" style="font-size:34px;letter-spacing:3px">ASANTE</span><span class="bebas muted" style="font-size:12px;letter-spacing:4px">BY FARMERS</span></a>
-<nav class="tabsnav"><button class="navbtn" data-dlg="dlg-policy">سياسة الطلب</button><button class="navbtn" data-dlg="dlg-order">آلية الطلب</button><button class="navbtn" data-dlg="dlg-bank">الحساب البنكي</button></nav>
+<nav class="tabsnav"><a class="navbtn lang" href="wholesale-en.html" lang="en" hreflang="en">English</a><button class="navbtn" data-dlg="dlg-policy">سياسة الطلب</button><button class="navbtn" data-dlg="dlg-order">آلية الطلب</button><button class="navbtn" data-dlg="dlg-bank">الحساب البنكي</button></nav>
 </div></header>
 <main>
 <section class="wrap" style="padding-top:56px;display:flex;flex-direction:column;gap:14px">
