@@ -356,7 +356,7 @@ function totals(){
   return {kgTotal:kgTotal,bagTotal:bagTotal,bagAuto:bagAuto,tier:t,lines:lines,sub:sub,vat:vat,tot:r2(sub+vat)};
 }
 function waLink(T){
-  var NL=String.fromCharCode(10);var m=(cname?('مرحباً، معك '+cname+'.'):'مرحباً،')+NL+'أبغى أطلب الآتي:'+NL;
+  var NL=String.fromCharCode(10);var m=(cname?('مرحباً، معك '+cname+'.'):'مرحباً،')+NL+'أحتاج أطلب الآتي:'+NL;
   T.lines.forEach(function(l){m+='• '+l.txt+''+NL});
   if(T.kgTotal)m+='مجموع الكيلو: '+T.kgTotal+' كيلو'+NL;if(T.bagTotal)m+='مجموع الأكياس: '+T.bagTotal+' كيس'+NL;
   m+='المجموع: '+fmt(T.sub)+' ر.س'+NL+'الضريبة 15%: '+fmt(T.vat)+' ر.س'+NL+'الإجمالي شامل الضريبة: '+fmt(T.tot)+' ر.س';
