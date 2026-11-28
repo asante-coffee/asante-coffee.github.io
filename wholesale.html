@@ -101,8 +101,8 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ju
 </div>
 
 <div class="ctrl m-bag">
-<span class="muted" style="font-size:15px">اختر الشريحة:</span>
-<div style="display:flex;flex-wrap:wrap;gap:8px" id="bagchips"><button class="chip" data-t="0">سعر إعادة البيع الرسمي</button><button class="chip on" data-t="1">طلب 50 كيلو</button><button class="chip" data-t="2">طلب 100 كيلو</button></div>
+<span style="font-size:17px;font-weight:600">الشريحة حسب عدد الأكياس في طلبك:</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px" id="bagchips"><span class="chip" data-t="1">50 – 180 كيس: سعر شريحة 50 كيلو</span><span class="chip" data-t="2">أكثر من 180 كيس: سعر شريحة 100 كيلو</span></div>
 <span class="muted" style="font-size:15px;flex-basis:100%" id="bagnote"></span>
 </div>
 </section>
@@ -340,7 +340,7 @@ nameEl.addEventListener('input',function(){cname=nameEl.value.trim();try{localSt
 function fmt(n){return Number(n).toLocaleString('en-US',{maximumFractionDigits:2})}
 function r2(n){return Math.round(n*100)/100}
 function tierOf(q){return q>=100?3:q>=50?2:q>=30?1:q>=10?0:-1}
-var BAGL=['سعر إعادة البيع','شريحة 50 كيلو','شريحة 100 كيلو'];
+var BAGL=['سعر إعادة البيع','سعر شريحة 50 كيلو','سعر شريحة 100 كيلو'];
 var cards={};document.querySelectorAll('.card[data-key]').forEach(function(c){cards[c.dataset.key]=c});
 function totals(){
   var kgTotal=0,bagTotal=0,lines=[],sub=0;
@@ -350,7 +350,7 @@ function totals(){
   Object.keys(cart).forEach(function(k){
     var c=cards[k],it=cart[k],kg=JSON.parse(c.dataset.kg),bag=JSON.parse(c.dataset.bag),name=c.dataset.name;
     if(it.kg){var p=kg[tp],v=r2(it.kg*p);sub+=v;lines.push({k:k,u:'kg',txt:name+': '+it.kg+' كيلو × '+fmt(p)+' = '+fmt(v)+' ر.س'})}
-    if(it.bag){var bt=bagAuto?2:(it.bt==null?bagT:it.bt),pb=bag[bt],vb=r2(it.bag*pb);sub+=vb;lines.push({k:k,u:'bag',txt:name+': '+it.bag+' كيس 225 جم × '+fmt(pb)+' ('+BAGL[bt]+') = '+fmt(vb)+' ر.س'})}
+    if(it.bag){var bt=bagAuto?2:1,pb=bag[bt],vb=r2(it.bag*pb);sub+=vb;lines.push({k:k,u:'bag',txt:name+': '+it.bag+' كيس 225 جم × '+fmt(pb)+' ('+BAGL[bt]+') = '+fmt(vb)+' ر.س'})}
   });
   sub=r2(sub);var vat=r2(sub*0.15);
   return {kgTotal:kgTotal,bagTotal:bagTotal,bagAuto:bagAuto,tier:t,lines:lines,sub:sub,vat:vat,tot:r2(sub+vat)};
@@ -369,12 +369,12 @@ function render(){
   var T=totals(),t=T.tier,hl=T.kgTotal?t:-1;
   document.querySelectorAll('#kgchips .chip').forEach(function(c,i){c.classList.toggle('on',i===hl)});
   document.getElementById('kgsum').textContent=T.kgTotal?('مجموع الكيلو في طلبك: '+T.kgTotal+' كيلو'+(t<0?' (الحد الأدنى 10 كيلو)':'')):'أضف المحاصيل والكميات من البطاقات، والسعر يتحدد تلقائياً.';
-  var bsel=T.bagAuto?2:bagT;document.querySelectorAll('#bagchips .chip').forEach(function(c,i){c.classList.toggle('on',i===bsel)});
-  document.getElementById('bagnote').textContent=T.bagAuto?('طلبك فيه '+T.bagTotal+' كيس، فينحسب سعر شريحة 100 كيلو تلقائياً.'):('أكثر من 180 كيس في الطلب ينحسب بسعر شريحة 100 كيلو تلقائياً'+(T.bagTotal?(' · في طلبك الآن '+T.bagTotal+' كيس'):'')+'.');
+  var bsel=T.bagTotal>=50?(T.bagAuto?2:1):-1;document.querySelectorAll('#bagchips .chip').forEach(function(c){c.classList.toggle('on',Number(c.dataset.t)===bsel)});
+  document.getElementById('bagnote').textContent='أقل طلب للأكياس 50 كيس. سعر إعادة البيع الرسمي للاسترشاد فقط.'+(T.bagTotal?(' · في طلبك الآن '+T.bagTotal+' كيس'+(T.bagTotal<50?' (أقل من الحد الأدنى)':'')):'');
   Object.keys(cards).forEach(function(k){
     var card=cards[k],it=cart[k]||{};
     card.querySelectorAll('.k4 .tier').forEach(function(el,i){el.classList.toggle('on',i===hl)});
-    card.querySelectorAll('.k3 .tier').forEach(function(el,i){el.classList.toggle('on',i===bsel)});
+    card.querySelectorAll('.k3 .tier').forEach(function(el,i){el.classList.toggle('on',i===(bsel<0?1:bsel))});
     var parts=[];if(it.kg)parts.push(it.kg+' كيلو');if(it.bag)parts.push(it.bag+' كيس');
     card.querySelector('.incart').textContent=parts.length?('في طلبك: '+parts.join(' + ')):'';
   });
@@ -382,9 +382,9 @@ function render(){
   bar.hidden=!n;document.body.classList.toggle('hasorder',!!n);
   document.getElementById('ocount').textContent=(n===1?'صنف واحد في الطلب':n===2?'صنفان في الطلب':n+' أصناف في الطلب')+' · الإجمالي شامل الضريبة: '+fmt(T.tot)+' ر.س';
   document.getElementById('osub').textContent=[T.kgTotal?('مجموع الكيلو: '+T.kgTotal+' كيلو'):'',T.bagTotal?('مجموع الأكياس: '+T.bagTotal+' كيس'):''].filter(Boolean).join(' · ');
-  var low=T.kgTotal>0&&T.kgTotal<10,link=low?'#':waLink(T);
+  var lowKg=T.kgTotal>0&&T.kgTotal<10,lowBag=T.bagTotal>0&&T.bagTotal<50,low=lowKg||lowBag,link=low?'#':waLink(T);
   ['osend','osend2'].forEach(function(id){var a=document.getElementById(id);a.href=link;a.setAttribute('aria-disabled',low?'true':'false');a.style.opacity=low?'.5':'1'});
-  var w=document.getElementById('owarn');w.hidden=!low;w.textContent=low?'الحد الأدنى لطلب الجملة بالكيلو 10 كيلو لمجموع الطلب. مجموعك الآن '+T.kgTotal+' كيلو.':'';
+  var w=document.getElementById('owarn');w.hidden=!low;w.textContent=[lowKg?('الحد الأدنى لطلب الكيلو 10 كيلو لمجموع الطلب. مجموعك الآن '+T.kgTotal+' كيلو.'):'',lowBag?('الحد الأدنى لطلب الأكياس 50 كيس. مجموعك الآن '+T.bagTotal+' كيس.'):''].filter(Boolean).join(' ');
   var ol=document.getElementById('olist');ol.innerHTML='';
   T.lines.forEach(function(l){var d=document.createElement('div');d.className='oline';var sp=document.createElement('span');sp.textContent=l.txt;var b=document.createElement('button');b.textContent='حذف';b.addEventListener('click',function(){delete cart[l.k][l.u];if(l.u==='bag')delete cart[l.k].bt;if(!cart[l.k].kg&&!cart[l.k].bag)delete cart[l.k];save();render()});d.appendChild(sp);d.appendChild(b);ol.appendChild(d)});
   document.getElementById('ototals').innerHTML='<div class="trow"><span>المجموع</span><span>'+fmt(T.sub)+' ر.س</span></div><div class="trow"><span>الضريبة 15%</span><span>'+fmt(T.vat)+' ر.س</span></div><div class="trow big"><span>الإجمالي شامل الضريبة</span><span>'+fmt(T.tot)+' ر.س</span></div>';
@@ -397,7 +397,6 @@ document.querySelectorAll('.card[data-key]').forEach(function(card){
   })});
 });
 document.querySelectorAll('.tab').forEach(function(b){b.addEventListener('click',function(){mode=b.dataset.mode;render()})});
-document.querySelectorAll('#bagchips .chip').forEach(function(c){c.addEventListener('click',function(){bagT=Number(c.dataset.t);Object.keys(cart).forEach(function(k){if(cart[k].bag)cart[k].bt=bagT});save();render()})});
 ['osend','osend2'].forEach(function(id){document.getElementById(id).addEventListener('click',function(e){if(this.getAttribute('aria-disabled')==='true'){e.preventDefault();var d=document.getElementById('dlg-order-list');if(!d.open)d.showModal()}})});
 document.getElementById('oview').addEventListener('click',function(){document.getElementById('dlg-order-list').showModal()});
 document.getElementById('oclear').addEventListener('click',function(){cart={};save();render();document.getElementById('dlg-order-list').close()});
