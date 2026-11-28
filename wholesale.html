@@ -295,10 +295,10 @@ footer .wrap{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;ju
 </div></article></div>
 </section>
 <section class="wrap s-matcha" style="padding-top:32px">
-<div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px"><h2>الماتشا</h2><span class="muted">السعر لكل علبة</span></div>
-<div class="grid"><article class="card"><img src="img/matcha.jpg" alt="ماتشا – اليابان" loading="lazy" style="object-fit:cover;background:#fff">
-<div class="body"><div><h3>ماتشا – اليابان</h3><span class="muted sm">احتفالية عضوية فاخرة · علبة 30 جم</span></div>
-<div class="tiers k3"><div class="tier"><span>سعر البيع</span><b dir="ltr">86</b></div><div class="tier"><span>كرتون −30%</span><b dir="ltr">60.2</b></div><div class="tier"><span>كرتونين+ −40%</span><b dir="ltr">51.6</b></div></div></div></article></div>
+<div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px"><h2>الماتشا</h2><span class="muted">السعر لكل علبة · الطلب بالكرتون (10 علب)</span></div>
+<div class="grid"><article class="card" data-ex="matcha"><img src="img/matcha.jpg" alt="ماتشا – اليابان" loading="lazy" style="object-fit:cover;background:#fff">
+<div class="body"><div><h3>ماتشا – اليابان</h3><span class="muted sm">احتفالية عضوية فاخرة · علبة 30 جم · الكرتون 10 علب</span></div>
+<div class="tiers k3"><div class="tier"><span>سعر البيع</span><b dir="ltr">86</b></div><div class="tier"><span>كرتون −30%</span><b dir="ltr">60.2</b></div><div class="tier"><span>كرتونين+ −40%</span><b dir="ltr">51.6</b></div></div><div class="addrow"><label class="sr" for="q-ex-matcha">عدد الكراتين</label><input id="q-ex-matcha" class="q" type="number" min="1" step="1" inputmode="numeric" placeholder="كراتين" dir="ltr"><button class="add">أضف للطلب</button></div><div class="incart" aria-live="polite"></div></div></article></div>
 </section>
 <section class="wrap s-drip" style="padding-top:32px">
 <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px"><h2>أظرف القهوة سريعة التحضير</h2><span class="muted">السعر لكل بوكس</span></div>
@@ -353,17 +353,22 @@ function fmt(n){return Number(n).toLocaleString('en-US',{maximumFractionDigits:2
 function r2(n){return Math.round(n*100)/100}
 function tierOf(q){return q>=100?3:q>=50?2:q>=30?1:q>=10?0:-1}
 var BAGL=['سعر إعادة البيع','سعر 50 كيلو','سعر 100 كيلو'];
+var EX={matcha:{name:'ماتشا – اليابان (علبة 30 جم)',per:10,prices:[60.2,51.6]}};
+function cw(n){return n===1?'كرتون واحد':n===2?'كرتونين':(n<=10?n+' كراتين':n+' كرتون')}
+function tw(n){return (n>=3&&n<=10)?n+' علب':n+' علبة'}
 var cards={};document.querySelectorAll('.card[data-key]').forEach(function(c){cards[c.dataset.key]=c});
 function totals(){
   var kgTotal=0,bagTotal=0,lines=[],sub=0;
-  Object.keys(cart).forEach(function(k){var c=cards[k];if(!c){delete cart[k];return};kgTotal+=(cart[k].kg||0);bagTotal+=(cart[k].bag||0)});
+  Object.keys(cart).forEach(function(k){if(k.indexOf('ex:')===0)return;var c=cards[k];if(!c){delete cart[k];return};kgTotal+=(cart[k].kg||0);bagTotal+=(cart[k].bag||0)});
   var bagAuto=bagTotal>180;
   var t=tierOf(kgTotal),tp=t<0?0:t;
   Object.keys(cart).forEach(function(k){
+    if(k.indexOf('ex:')===0)return;
     var c=cards[k],it=cart[k],kg=JSON.parse(c.dataset.kg),bag=JSON.parse(c.dataset.bag),name=c.dataset.name;
     if(it.kg){var p=kg[tp],v=r2(it.kg*p);sub+=v;lines.push({k:k,u:'kg',txt:name+': '+it.kg+' كيلو × '+fmt(p)+' = '+fmt(v)+' ر.س'})}
     if(it.bag){var bt=bagAuto?2:1,pb=bag[bt],vb=r2(it.bag*pb);sub+=vb;lines.push({k:k,u:'bag',txt:name+': '+it.bag+' كيس 225 جم × '+fmt(pb)+' ('+BAGL[bt]+') = '+fmt(vb)+' ر.س'})}
   });
+  Object.keys(EX).forEach(function(x){var n=(cart['ex:'+x]||{}).c;if(!n)return;var e=EX[x],p=e.prices[n>=2?1:0],v=r2(n*e.per*p);sub+=v;lines.push({k:'ex:'+x,u:'c',txt:e.name+': '+cw(n)+' ('+tw(n*e.per)+') × '+fmt(p)+' = '+fmt(v)+' ر.س'})});
   sub=r2(sub);var vat=r2(sub*0.15);
   return {kgTotal:kgTotal,bagTotal:bagTotal,bagAuto:bagAuto,tier:t,lines:lines,sub:sub,vat:vat,tot:r2(sub+vat)};
 }
@@ -390,6 +395,7 @@ function render(){
     var parts=[];if(it.kg)parts.push(it.kg+' كيلو');if(it.bag)parts.push(it.bag+' كيس');
     card.querySelector('.incart').textContent=parts.length?('في طلبك: '+parts.join(' + ')):'';
   });
+  document.querySelectorAll('.card[data-ex]').forEach(function(card){var n=(cart['ex:'+card.dataset.ex]||{}).c||0;card.querySelectorAll('.tier').forEach(function(el,i){el.classList.toggle('on',n>0&&i===(n>=2?2:1))});card.querySelector('.incart').textContent=n?('في طلبك: '+cw(n)+' ('+tw(n*EX[card.dataset.ex].per)+')'):''});
   var n=T.lines.length,bar=document.getElementById('obar');
   bar.hidden=!n;document.body.classList.toggle('hasorder',!!n);
   document.getElementById('ocount').textContent=(n===1?'صنف واحد في الطلب':n===2?'صنفان في الطلب':n+' أصناف في الطلب')+' · الإجمالي شامل الضريبة: '+fmt(T.tot)+' ر.س';
@@ -398,7 +404,7 @@ function render(){
   ['osend','osend2'].forEach(function(id){var a=document.getElementById(id);a.href=link;a.setAttribute('aria-disabled',low?'true':'false');a.style.opacity=low?'.5':'1'});
   var w=document.getElementById('owarn');w.hidden=!low;w.textContent=[lowKg?('الحد الأدنى لطلب الكيلو 10 كيلو لمجموع الطلب. مجموعك الآن '+T.kgTotal+' كيلو.'):'',lowBag?('الحد الأدنى لطلب الأكياس 50 كيس. مجموعك الآن '+T.bagTotal+' كيس.'):''].filter(Boolean).join(' ');
   var ol=document.getElementById('olist');ol.innerHTML='';
-  T.lines.forEach(function(l){var d=document.createElement('div');d.className='oline';var sp=document.createElement('span');sp.textContent=l.txt;var b=document.createElement('button');b.textContent='حذف';b.addEventListener('click',function(){delete cart[l.k][l.u];if(l.u==='bag')delete cart[l.k].bt;if(!cart[l.k].kg&&!cart[l.k].bag)delete cart[l.k];save();render()});d.appendChild(sp);d.appendChild(b);ol.appendChild(d)});
+  T.lines.forEach(function(l){var d=document.createElement('div');d.className='oline';var sp=document.createElement('span');sp.textContent=l.txt;var b=document.createElement('button');b.textContent='حذف';b.addEventListener('click',function(){delete cart[l.k][l.u];if(l.u==='bag')delete cart[l.k].bt;if(!cart[l.k].kg&&!cart[l.k].bag&&!cart[l.k].c)delete cart[l.k];save();render()});d.appendChild(sp);d.appendChild(b);ol.appendChild(d)});
   document.getElementById('ototals').innerHTML='<div class="trow"><span>المجموع</span><span>'+fmt(T.sub)+' ر.س</span></div><div class="trow"><span>الضريبة 15%</span><span>'+fmt(T.vat)+' ر.س</span></div><div class="trow big"><span>الإجمالي شامل الضريبة</span><span>'+fmt(T.tot)+' ر.س</span></div>';
 }
 document.querySelectorAll('.card[data-key]').forEach(function(card){
@@ -408,6 +414,7 @@ document.querySelectorAll('.card[data-key]').forEach(function(card){
     var k=card.dataset.key;cart[k]=cart[k]||{};cart[k][u]=q;if(u==='bag')cart[k].bt=bagT;inp.value='';save();render();
   })});
 });
+document.querySelectorAll('.card[data-ex]').forEach(function(card){card.querySelector('.add').addEventListener('click',function(){var inp=card.querySelector('.q'),q=Math.floor(Number(inp.value)||0);if(q<=0){inp.focus();return};cart['ex:'+card.dataset.ex]={c:q};inp.value='';save();render()})});
 document.querySelectorAll('.tab').forEach(function(b){b.addEventListener('click',function(){mode=b.dataset.mode;render()})});
 ['osend','osend2'].forEach(function(id){document.getElementById(id).addEventListener('click',function(e){if(this.getAttribute('aria-disabled')==='true'){e.preventDefault();var d=document.getElementById('dlg-order-list');if(!d.open)d.showModal()}})});
 document.getElementById('oview').addEventListener('click',function(){document.getElementById('dlg-order-list').showModal()});
